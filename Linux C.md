@@ -1,4 +1,4 @@
-# Linux C
+Linux C
 
 ## 嵌入式C语言高阶
 ### gcc的内容及其常用选项
@@ -78,7 +78,6 @@ COLLECT_GCC_OPTIONS='-v' '-o' 'build' '-mtune=generic' '-march=x86-64'
  /usr/libexec/gcc/x86_64-redhat-linux/8/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/8/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccvFA60Y.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o build /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/8/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/8 -L/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/8/../../.. /tmp/ccVYmI9C.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/8/crtend.o /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o
 COLLECT_GCC_OPTIONS='-v' '-o' 'build' '-mtune=generic' '-march=x86-64'
 [root@VM-0-3-centos c]#
-
 ```
 ##### 编译
 第13行中的 `/usr/libexec/gcc/x86_64-redhat-linux/8/cc1 -quiet -v 001.c`（`cc1 -o *.s 001.c` ）等价于**`gcc -S`**
@@ -856,4 +855,658 @@ p1 > p2;
 > char buf[100]; 
 >
 > buf = "hello world";
+
+#### 数组空间的初始化问题
+
+空间的赋值→**按照标签逐一赋值**
+
+int a[10];	[0~9]
+
+```c
+a[0] = 0;
+a[1] = 1;
+a[2] = 2;
+...
+a[9] = 9;
+```
+
+
+
+> 程序员这样赋值，重复性工作量比较大，所以考虑让编译器自动处理，帮助完成以上程序
+>
+> 空间定义时，就告诉编译器初始化的情况，空间的第一次赋值，初始化操作。
+
+`int a[10] = 空间；`
+
+C语言本身，CPU内部本身一般不支持空间和空间的拷贝
+
+int a[10] = {10,20,30};=========>a[0] = 10;a[1] = 20;a[2] = 30;a[3] = 0;...
+
+**数组空间的初始化**和**变量的初始化**本质是不同的，尤其在嵌入式的裸机开发中，空间的初始化往往需要一些库函数的辅助
+
+##### char
+
+```c
+char buf[10] = {'a','b','c'};
+```
+
+buf 当作普通内存来看的话，没问题
+
+但是当作字符串来看，最后需要加上‘\0’作为字符串的结束标志（字符串的重要属性，结尾一定有个‘\0’）
+
+```c
+char buf[10] = {"abc"};//编译器看到双引号的时候会自动加上“\0”
+```
+
+也可以是
+
+```c
+char buf[10] = "abc";
+```
+
+以上两种以双引号“”进行初始化的方式，其实是将常量区的数据，**拷贝**到变量区中去
+
+而下面这种方式，用指针去指向常量，就是错误的❌
+
+char *p = “abc” ❌
+
+也就是说：
+
+buf[2] = 'e'; ✔可以，变来变去还是在buf里面变，变量是可以修改的。
+
+p[2] = 'e';❌不可以，常量是不能修改的
+
+##### strcpy、strncpy
+
+一块空间，当成字符空间，提供了一套字符拷贝函数
+
+> 字符拷贝函数的原则：
+>
+> 内存空间和内存空间逐一赋值的功能的一个**封装体**
+>
+> 一旦空间出现了0这个特殊值，函数就即将结束。
+
+
+```bash
+sudo yum install man-pages #先安装man-pages查看助手
+man strcpy #查看strcpy的说明文件
+```
+
+```c
+#include <string.h>
+
+char *strcpy(char *dest, const char *src); //源中的逐个位是不能改变的，
+
+char *strncpy(char *dest, const char *src, size_t n);
+```
+
+```c
+dest[i] = src[i];
+i++;
+if(src[i] == 0) 停止拷贝
+```
+
+一般使用：
+
+```c
+char buf[10]  = "abc";
+buf  = "hello world";
+strcpy(buf,"hello world");
+```
+
+##### 非字符串空间
+
+字符空间：
+
+ASCII码来解码的空间 → 给人看的， `\0`作为结束标志
+
+非字符空间：
+
+数据采集0x00~0xff 8bit
+
+开辟一个存储这些数据的盒子
+
+> char buf[10];→string 看到char 一定反应出，它是一个字符string
+>
+> unsigned char buf[10];→data；看到unsigned char，一定是data，而且是最小的data
+
+strcpy看不到`\0`不会停止拷贝，不安全
+
+只管拷贝，结束在哪儿，只能定义个数。
+
+拷贝三要素：
+
+1. src 		你在哪儿？ **源地址**
+2. dest       拷贝到哪儿去？**目标地址**
+3. 个数       拷多少？
+
+##### memcpy
+
+```c
+#include <string.h>
+
+void *memcpy(void *dest, const void *src, size_t n); //三要素完备
+```
+
+```c
+int buf[10];
+int sensor_buf[100];
+memcpy(buf,sensor_buf,10*sizeof(int));
+```
+
+```c
+unsigned char buf1[10];
+unsigned char sensor_buf1[100];
+strncpy(buf,sensor_buf1,10);//如果出现 00 00 00 34 56 78 这样的数据，由于出现了0，会出现拷贝的是空的情况
+memcpy(buf,sensor_buf1,10*sizeof(unsigned char))//这样的方式才是安全的
+```
+
+### 指针数组
+
+
+
+```c
+int a[100];
+char *a[100];
+```
+
+sizeof(a) = 100*4;
+
+int b;
+
+sizeof(b)
+
+```c
+char **a; //其实可以理解为指针数组
+```
+
+![image-20210506162855991](..\studyLinuxC\imgs\image-20210506162855991.png)
+
+数组名的保存
+
+定义一个指针，指向int a[10]的首地址
+
+定义一个指针，指向`b[5][6]` 的首地址
+
+```c
+#include<stdio.h>
+
+ int main(int argc,char *argv)
+ {
+    int a[10];
+    int b[5][6];
+    int *p1 = a;
+    int **p2 = b;
+}
+```
+
+`int *p[5];` --------> p 有5个空间，每个空间寸的都是\*，每个\*指向的都是int型的。
+
+int （*p）[5]; 
+
+>```c
+>int b[2][3][4];
+>
+>int (*p)[3][4];
+>```
+
+### 结构体
+
+#### 字节对齐
+
+int a;
+
+char b;
+
+4+1=5
+
+```c
+[root@VM-0-3-centos c]# cat 011.c
+#include<stdio.h>
+
+struct abc{
+    int a;
+    char b;
+};
+
+int main(int argc,char* argv[])
+{
+    struct abc buf;
+
+    printf("the buf is %lu\n",sizeof(buf));
+
+
+    return 0;
+
+}
+[root@VM-0-3-centos c]# ./build
+the buf is 8
+```
+
+为了提高CPU的执行效率，我们往往选择牺牲一点空间，换取时间的效率
+
+CPU4个4个字节的读，效率比较高，最终结构体的大小一定是4的倍数。
+
+```c
+[root@VM-0-3-centos c]# cat 011.c
+#include<stdio.h>
+
+struct abc{
+    int a;
+    short e;
+    char b;
+};
+struct my{
+    char a;
+    int b;
+    short e;
+};
+
+int main(int argc,char* argv[])
+{
+    struct abc buf;
+
+    struct my buf1;
+
+    printf("the buf is %lu,%lu\n",sizeof(buf),sizeof(buf1));
+
+
+    return 0;
+}
+[root@VM-0-3-centos c]# ./build
+the buf is 8,12
+[root@VM-0-3-centos c]#
+```
+
+结构体内成员变量的顺序不一致也会影响到他的大小。
+
+![image-20210506235941207](..\studyLinuxC\imgs\image-20210506235941207.png)
+
+### 内存分布图
+
+> 栈空间
+>
+> 堆空间
+>
+> 只读空间
+
+
+
+内存的属性：
+
+1. 大小
+2. 在哪里
+
+编译→汇编→链接
+
+section 段	
+
+```c
+[root@VM-0-3-centos c]# cat 012.c
+#include<stdio.h>
+
+int main(int argc, char* argv)
+{
+    int a;
+    a = 0x10;
+
+    printf("a is %p\n",&a);
+    printf("main is %p\n",main);
+}
+[root@VM-0-3-centos c]# ./build
+a is 0x7ffc224285ac
+main is 0x400596
+[root@VM-0-3-centos c]#
+```
+
+| 内核空间       | 应用程序不允许访问                                           |
+| -------------- | ------------------------------------------------------------ |
+| 栈空间         | 局部变量（临时存储一下函数里面定义的变量）                   |
+| 运行时的堆空间 | malloc分配的空间                                             |
+| 全局的数据空间 | 初始化的，未初始化的   使用`static`修饰后，变成了局部的访问，但是任然放在全局段中 |
+| 只读数据段     | “hello world”                                                |
+| 代码段         | code                                                         |
+
+0到3G分配给应用程序（其实头部也有一段内核空间）
+
+3G到4G是内核空间
+
+![image-20210507002314802](..\studyLinuxC\imgs\image-20210507002314802.png)
+
+`strings + 输出文件名` 可以打印出常量区的内容
+
+```c
+[root@VM-0-3-centos c]# strings build
+/lib64/ld-linux-x86-64.so.2
+libc.so.6
+printf
+__libc_start_main
+GLIBC_2.2.5
+_ITM_deregisterTMCloneTable
+__gmon_start__
+_ITM_registerTMCloneTable
+[]A\A]A^A_
+a is %p
+main is %p
+;*3$"
+GCC: (GNU) 8.3.1 20191121 (Red Hat 8.3.1-5)
+……省略
+```
+
+`size` 用于查看目标文件、库或可执行文件中各段及其总和的大小，是 GNU 二进制工具集 [GNU Binutils](https://www.gnu.org/software/binutils/) 的一员
+
+`nm`命令，查看静态空间段名的
+
+> 我们写了一些静态变量，每一个静态变量其实都有一个标签
+
+#### 只读空间
+
+> 静态空间，整个程序结束时释放内存，生存周期最长
+
+#### 栈空间
+
+> 运行时，函数内部使用的变量，函数一旦返回就是放了
+
+#### 堆空间
+
+> 运行时，可以自由、自我管理的分配和释放的空间，生存周期是由程序员来决定的
+
+##### 分配
+
+malloc（），一旦成功，返回分配好的地址给我们，只需要接受就可以，对于新地址的读法由程序员灵活把握，输入参数指定分配的大小，单位是字节（B）。
+
+定义一个盒子来接受malloc（）分配的地址：
+
+```c
+char *p
+
+p = （char*）malloc(100);
+
+if (p == NULL)
+{
+    error;
+}
+
+int a[5];
+malloc(5*sizeof(int));
+
+```
+
+##### 释放
+
+```c
+free(p);//一旦申请，无比释放，否则将造成内存泄漏
+```
+
+## 函数空间
+
+### C语言函数的使用
+
+一堆代码的集合，用一个标签去描述它。
+
+复用化
+
+标签——函数名
+
+函数具备3要素
+
+> 函数名（地址）
+>
+> 输入参数
+>
+> 返回值
+
+
+
+#### 函数名
+
+定义函数时，必须将3要素告知编译器
+
+int fun （int，int，char）
+
+{
+
+​	XXXX
+
+}
+
+如何用指针保存函数呢
+
+```c
+int (*p)(int,int,char);
+```
+
+类比数组
+
+char buf[100];
+
+int fun(int a){xxx}
+
+数组：标签（数组名）+ 方括号
+
+函数：标签（函数名）+ 圆括号
+
+终端输入一下命令，查看printf函数的声明
+
+```shell
+man 3 printf
+```
+
+```c
+int printf(const char *format, ...);
+```
+
+```shell
+[root@VM-0-3-centos c]# vim 013.c
+[root@VM-0-3-centos c]# cat 013.c
+#include<stdio.h>
+
+int main(int argc,char*argv[])
+{
+    int (*myshow)(const char *format, ...);
+    printf("hello world\n");
+    myshow = printf;
+    myshow("=========================\n");
+    return 0;
+}
+
+[root@VM-0-3-centos c]# gcc -o build 013.c
+[root@VM-0-3-centos c]# ./build
+hello world
+=========================
+[root@VM-0-3-centos c]#
+```
+
+可以看出，并不是非要用`printf`,它只是一个**标签**，只不过这个**标签**所指向的地方有我们需要的工具。
+
+```shell
+[root@VM-0-3-centos c]# cat 013.c
+#include<stdio.h>
+
+int main(int argc,char*argv[])
+{
+    int (*myshow)(const char *format, ...);
+    printf("the printf is %p\n",printf);
+    myshow = printf;
+    myshow("=========================\n");
+    return 0;
+}
+[root@VM-0-3-centos c]# ./build
+the printf is 0x4004a0
+=========================
+[root@VM-0-3-centos c]#
+```
+
+```shell
+[root@VM-0-3-centos c]# cat 013.c
+#include<stdio.h>
+
+int main(int argc,char*argv[])
+{
+    int (*myshow)(const char *format, ...);
+    printf("the printf is %p\n",printf);
+    //myshow = printf;
+    myshow = (int (*)(const char*,...))0x4004a0;
+    myshow("=========================\n");
+    return 0;
+}
+[root@VM-0-3-centos c]# ./build
+the printf is 0x4004a0
+=========================
+[root@VM-0-3-centos c]#
+
+```
+
+注意第9行
+
+```c
+(int (*)(const char*,...))0x4004a0;
+```
+
+将一个数字`0x4004a0`转换成一个函数声明怎么办？
+
+\* 将数字`0x4004a0`强制转换成一个地址，但是呢这个\*读地址的方式非常特殊：`(const char*,...)`,然后返回成`int`,于是就成了上面这种形式。
+
+
+
+switch 的一种优化：
+
+```c
+switch (day){
+     case 1:
+        fun1();
+        break;
+    case 2:
+        fun2();
+        break;
+}
+```
+
+```c
+int (*p[7](int,int));用一个数组来存放函数的标签(函数名称，实际上是地址)
+p[0] = fun1;
+p[1] = fun2;
+...
+    
+p[day](10,20);
+```
+
+普通内存，只需要知道它的门牌号就可以访问了，但是函数比较特殊，需要凑齐三要素，除了门牌号（地址）还要知道它的输入参数和返回值，我们才能把这样的内存当作函数内存
+
+#### 输入参数
+
+承上启下
+
+调用者：
+
+函数名（要传递的数据）	//实参(实实在在的数据)
+
+被调者：
+
+> 函数的具体实现
+
+> 函数的返回值 函数名（接收的数据）//形参
+>
+> {
+> ​		XXXXX
+> }
+
+void fun(int buf);  //理解成传入的是四个字节的参数，而不是一个int
+
+##### 参数传递
+
+**实参**传递给**形参**
+
+拷贝(本质)
+
+**值传递**是上层调用者**保护**自己空间值不被修改的能力
+
+```shell
+#include<stdio.h>
+
+void swap(int a, int b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+
+    printf("when swap a:%d,b:%d\n",a,b);
+}
+
+int main(int argc, char* argv[])
+{
+    int a = 8;
+    int b = 99;
+    swap(a,b);
+    printf("a:%d,b:%d\n",a,b);
+}
+[root@VM-0-3-centos c]# ./build
+when swap a:99,b:8
+a:8,b:99
+```
+
+引用传递
+
+```shell
+[root@VM-0-3-centos c]# cat 014.c
+#include<stdio.h>
+
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+
+    printf("when swap a:%d,b:%d\n",*a,*b);
+}
+
+int main(int argc, char* argv[])
+{
+    int a = 8;
+    int b = 99;
+    swap(&a,&b);
+    printf("a:%d,b:%d\n",a,b);
+}
+[root@VM-0-3-centos c]# ./build
+when swap a:99,b:8
+a:99,b:8
+[root@VM-0-3-centos c]#
+```
+
+##### 地址传递
+
+上层调用者，让下层子函数修改自己空间的方式
+
+类似结构体这样的空间，函数与函数之间调用关系-->
+
+##### 连续空间的传递
+
+1. 数组
+
+   数组名------标签
+
+   > ```c
+   > // 实参：
+   >       int abc[10];
+   >    
+   >       fun(abc);
+   > //形参：
+   >       void fun(int *p);      void fun(int p[10]);//虽然有数字10，但是不起作用，仍然表示一个地址
+   > ```
+
+2. 结构体
+
+   结构体变量
+
+> ```c
+> struct abc{int a;int b; int c;}
+> 
+> struct abc buf;
+> 
+> //实参
+> 		fun(buf);						fun(&buf);
+> 
+> //形参
+> 	void fun(struct abc a1);	void fun(struct abc *a2);
+> ```
 
