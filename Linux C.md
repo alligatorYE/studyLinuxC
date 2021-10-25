@@ -1510,3 +1510,7 @@ a:99,b:8
 > 	void fun(struct abc a1);	void fun(struct abc *a2);
 > ```
 
+### 常见面试题
+
+static关键字的作用是什么：
+

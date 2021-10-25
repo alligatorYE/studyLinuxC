@@ -76,3 +76,15 @@ COLLECT_GCC_OPTIONS='-v' '-o' 'build' '-mtune=generic' '-march=x86-64'
 
 第13行 `/usr/libexec/gcc/x86_64-redhat-linux/8/cc1 -quiet -v 001.c` 中的 `cc1 -quiet -v 001.c`
 
+### 查看磁盘空间
+
+```shell
+df -h
+```
+
+### 清理删除了的文件
+
+```shell
+lsof | grep deleted
+```
+
