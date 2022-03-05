@@ -1,0 +1,1852 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>ch09</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+
+
+/* Flowchart variables */
+/* Sequence Diagram variables */
+/* Gantt chart variables */
+/* state colors */
+.label {
+  
+  color: #333; }
+
+.label text {
+  fill: #333; }
+
+.node rect,
+.node circle,
+.node ellipse,
+.node polygon {
+  fill: #BDD5EA;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+.node .label {
+  text-align: center; }
+
+.node.clickable {
+  cursor: pointer; }
+
+.arrowheadPath {
+  fill: lightgrey; }
+
+.edgePath .path {
+  stroke: lightgrey;
+  stroke-width: 1.5px; }
+
+.edgeLabel {
+  background-color: #e8e8e8;
+  text-align: center; }
+
+.cluster rect {
+  fill: #6D6D65;
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 1px; }
+
+.cluster text {
+  fill: #F9FFFE; }
+
+div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  
+  font-size: 12px;
+  background: #6D6D65;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+.actor {
+  stroke: #81B1DB;
+  fill: #BDD5EA; }
+
+text.actor {
+  fill: black;
+  stroke: none; }
+
+.actor-line {
+  stroke: lightgrey; }
+
+.messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: lightgrey; }
+
+.messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: lightgrey; }
+
+#arrowhead {
+  fill: lightgrey; }
+
+.sequenceNumber {
+  fill: white; }
+
+#sequencenumber {
+  fill: lightgrey; }
+
+#crosshead path {
+  fill: lightgrey !important;
+  stroke: lightgrey !important; }
+
+.messageText {
+  fill: lightgrey;
+  stroke: none; }
+
+.labelBox {
+  stroke: #81B1DB;
+  fill: #BDD5EA; }
+
+.labelText {
+  fill: #323D47;
+  stroke: none; }
+
+.loopText {
+  fill: lightgrey;
+  stroke: none; }
+
+.loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  stroke: #81B1DB; }
+
+.note {
+  stroke: rgba(255, 255, 255, 0.25);
+  fill: #fff5ad; }
+
+.noteText {
+  fill: black;
+  stroke: none;
+  
+  font-size: 14px; }
+
+.activation0 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+.activation1 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+.activation2 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+/** Section styling */
+.section {
+  stroke: none;
+  opacity: 0.2; }
+
+.section0 {
+  fill: rgba(255, 255, 255, 0.3); }
+
+.section2 {
+  fill: #EAE8B9; }
+
+.section1,
+.section3 {
+  fill: white;
+  opacity: 0.2; }
+
+.sectionTitle0 {
+  fill: #F9FFFE; }
+
+.sectionTitle1 {
+  fill: #F9FFFE; }
+
+.sectionTitle2 {
+  fill: #F9FFFE; }
+
+.sectionTitle3 {
+  fill: #F9FFFE; }
+
+.sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px;
+   }
+
+/* Grid and axis */
+.grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+.grid path {
+  stroke-width: 0; }
+
+/* Today line */
+.today {
+  fill: none;
+  stroke: #DB5757;
+  stroke-width: 2px; }
+
+/* Task styling */
+/* Default task */
+.task {
+  stroke-width: 2; }
+
+.taskText {
+  text-anchor: middle;
+   }
+
+.taskText:not([font-size]) {
+  font-size: 11px; }
+
+.taskTextOutsideRight {
+  fill: #323D47;
+  text-anchor: start;
+  font-size: 11px;
+   }
+
+.taskTextOutsideLeft {
+  fill: #323D47;
+  text-anchor: end;
+  font-size: 11px; }
+
+/* Special case clickable */
+.task.clickable {
+  cursor: pointer; }
+
+.taskText.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+.taskTextOutsideLeft.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+.taskTextOutsideRight.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+/* Specific task settings for the sections*/
+.taskText0,
+.taskText1,
+.taskText2,
+.taskText3 {
+  fill: #323D47; }
+
+.task0,
+.task1,
+.task2,
+.task3 {
+  fill: #BDD5EA;
+  stroke: rgba(255, 255, 255, 0.5); }
+
+.taskTextOutside0,
+.taskTextOutside2 {
+  fill: lightgrey; }
+
+.taskTextOutside1,
+.taskTextOutside3 {
+  fill: lightgrey; }
+
+/* Active task */
+.active0,
+.active1,
+.active2,
+.active3 {
+  fill: #81B1DB;
+  stroke: rgba(255, 255, 255, 0.5); }
+
+.activeText0,
+.activeText1,
+.activeText2,
+.activeText3 {
+  fill: #323D47 !important; }
+
+/* Completed task */
+.done0,
+.done1,
+.done2,
+.done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+.doneText0,
+.doneText1,
+.doneText2,
+.doneText3 {
+  fill: #323D47 !important; }
+
+/* Tasks on the critical line */
+.crit0,
+.crit1,
+.crit2,
+.crit3 {
+  stroke: #E83737;
+  fill: #E83737;
+  stroke-width: 2; }
+
+.activeCrit0,
+.activeCrit1,
+.activeCrit2,
+.activeCrit3 {
+  stroke: #E83737;
+  fill: #81B1DB;
+  stroke-width: 2; }
+
+.doneCrit0,
+.doneCrit1,
+.doneCrit2,
+.doneCrit3 {
+  stroke: #E83737;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+.milestone {
+  transform: rotate(45deg) scale(0.8, 0.8); }
+
+.milestoneText {
+  font-style: italic; }
+
+.doneCritText0,
+.doneCritText1,
+.doneCritText2,
+.doneCritText3 {
+  fill: #323D47 !important; }
+
+.activeCritText0,
+.activeCritText1,
+.activeCritText2,
+.activeCritText3 {
+  fill: #323D47 !important; }
+
+.titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: #323D47;
+   }
+
+g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  
+  font-size: 10px; }
+  g.classGroup text .title {
+    font-weight: bolder; }
+
+g.classGroup rect {
+  fill: #BDD5EA;
+  stroke: #9370DB; }
+
+g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+.classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #BDD5EA;
+  opacity: 0.5; }
+
+.classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+.relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#aggregationStart {
+  fill: #BDD5EA;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#aggregationEnd {
+  fill: #BDD5EA;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+.commit-id,
+.commit-msg,
+.branch-label {
+  fill: lightgrey;
+  color: lightgrey;
+   }
+
+.pieTitleText {
+  text-anchor: middle;
+  font-size: 25px;
+  fill: #eee;
+}
+
+g.stateGroup text {
+  stroke: none;
+  font-size: 10px;
+}
+
+g.stateGroup circle {
+  fill: white !important;
+  stroke: white !important;
+}
+
+g.stateGroup .state-title {
+  font-weight: bolder;
+  fill: black; }
+
+g.stateGroup rect {
+  fill: #ececff;
+  stroke: #9370DB; }
+
+g.stateGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+.transition {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+.stateGroup .composit {
+  fill: #555;
+  border-bottom: 1px; }
+
+.state-note {
+  stroke: rgba(255, 255, 255, 0.25);
+  fill: #fff5ad; }
+  .state-note text {
+    fill: black;
+    stroke: none;
+    font-size: 10px; }
+
+.stateLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #BDD5EA;
+  opacity: 0.5; }
+
+.stateLabel text {
+  fill: black;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.cluster-label {
+  color:black;
+}
+
+.statediagram-cluster rect {
+  fill: #BDD5EA;
+  stroke: #9370DB; 
+  stroke-width: 1px;
+}
+.statediagram-cluster rect.outer {
+  rx: 5px;
+  ry: 5px;
+}
+.statediagram-state .divider {
+  stroke: #9370DB; 
+}
+
+.statediagram-state .title-state {
+  rx: 5px;
+  ry: 5px;
+}
+.statediagram-cluster.statediagram-cluster .inner {
+  fill: white;
+}
+.statediagram-cluster.statediagram-cluster-alt .inner {
+  fill: #e0e0e0;
+}
+
+.statediagram-cluster .inner {
+  rx:0;
+  ry:0;
+}
+
+.statediagram-state rect.basic {
+  rx: 5px;
+  ry: 5px;
+}
+.statediagram-state rect.divider {
+  stroke-dasharray: 10,10;
+  fill: #efefef;
+}
+
+.note-edge {
+  stroke-dasharray: 5;
+}
+
+.statediagram-note rect {
+  stroke: var(--cluster-border);
+  fill: #fff5ad;
+  stroke-width: 1px;
+  rx: 0;
+  ry: 0;
+}
+
+.node circle.state-start {
+  fill: black;
+  stroke: black;
+}
+.node circle.state-end {
+  fill: black;
+  stroke: white;
+  stroke-width: 1.5
+}
+#statediagram-barbEnd {
+  fill: #9370DB; 
+}
+
+/* CSS Document */
+
+/** code highlight */
+
+.cm-s-inner .cm-variable,
+.cm-s-inner .cm-operator,
+.cm-s-inner .cm-property {
+    color: #b8bfc6;
+}
+
+.cm-s-inner .cm-keyword {
+    color: #C88FD0;
+}
+
+.cm-s-inner .cm-tag {
+    color: #7DF46A;
+}
+
+.cm-s-inner .cm-attribute {
+    color: #7575E4;
+}
+
+.CodeMirror div.CodeMirror-cursor {
+    border-left: 1px solid #b8bfc6;
+    z-index: 3;
+}
+
+.cm-s-inner .cm-string {
+    color: #D26B6B;
+}
+
+.cm-s-inner .cm-comment,
+.cm-s-inner.cm-comment {
+    color: #DA924A;
+}
+
+.cm-s-inner .cm-header,
+.cm-s-inner .cm-def,
+.cm-s-inner.cm-header,
+.cm-s-inner.cm-def {
+    color: #8d8df0;
+}
+
+.cm-s-inner .cm-quote,
+.cm-s-inner.cm-quote {
+    color: #57ac57;
+}
+
+.cm-s-inner .cm-hr {
+    color: #d8d5d5;
+}
+
+.cm-s-inner .cm-link {
+    color: #d3d3ef;
+}
+
+.cm-s-inner .cm-negative {
+    color: #d95050;
+}
+
+.cm-s-inner .cm-positive {
+    color: #50e650;
+}
+
+.cm-s-inner .cm-string-2 {
+    color: #f50;
+}
+
+.cm-s-inner .cm-meta,
+.cm-s-inner .cm-qualifier {
+    color: #b7b3b3;
+}
+
+.cm-s-inner .cm-builtin {
+    color: #f3b3f8;
+}
+
+.cm-s-inner .cm-bracket {
+    color: #997;
+}
+
+.cm-s-inner .cm-atom,
+.cm-s-inner.cm-atom {
+    color: #84B6CB;
+}
+
+.cm-s-inner .cm-number {
+    color: #64AB8F;
+}
+
+.cm-s-inner .cm-variable {
+    color: #b8bfc6;
+}
+
+.cm-s-inner .cm-variable-2 {
+    color: #9FBAD5;
+}
+
+.cm-s-inner .cm-variable-3 {
+    color: #1cc685;
+}
+
+.CodeMirror-selectedtext,
+.CodeMirror-selected {
+    background: #4a89dc;
+    color: #fff !important;
+    text-shadow: none;
+}
+
+.CodeMirror-gutters {
+    border-right: none;
+}
+
+/* CSS Document */
+
+/** markdown source **/
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property
+{
+    color: #cebcca;
+}
+
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor{
+    border-left: 3px solid #b8bfc6;
+}
+
+.cm-s-typora-default .cm-comment {
+    color: #9FB1FF;
+}
+
+.cm-s-typora-default .cm-string {
+    color: #A7A7D9
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+    color: #848695;
+    font-style: italic;
+}
+
+.cm-s-typora-default .cm-link {
+    color: #95B94B;
+}
+
+.cm-s-typora-default .CodeMirror-activeline-background {
+    background: rgba(51, 51, 51, 0.72);
+}
+
+.cm-s-typora-default .cm-comment, .cm-s-typora-default .cm-code {
+	color: #8aa1e1;
+}@import "";
+@import "";
+@import "";
+
+:root {
+    --bg-color:  #363B40;
+    --side-bar-bg-color: #2E3033;
+    --text-color: #b8bfc6;
+
+    --select-text-bg-color:#4a89dc;
+
+    --item-hover-bg-color: #0a0d16;
+    --control-text-color: #b7b7b7;
+    --control-text-hover-color: #eee;
+    --window-border: 1px solid #555;
+
+    --active-file-bg-color: rgb(34, 34, 34);
+    --active-file-border-color: #8d8df0;
+
+    --primary-color: #a3d5fe;
+
+    --active-file-text-color: white;
+    --item-hover-bg-color: #70717d;
+    --item-hover-text-color: white;
+    --primary-color: #6dc1e7;
+
+    --rawblock-edit-panel-bd: #333;
+
+    --search-select-bg-color: #428bca;
+}
+
+html {
+    font-size: 16px;
+}
+
+html,
+body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    background: #363B40;
+    background: var(--bg-color);
+    fill: currentColor;
+    line-height: 1.625rem;
+}
+
+#write {
+    max-width: 914px;
+}
+
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+div.code-tooltip-content {
+    color: #b8bfc6;
+    border-color: transparent;
+}
+
+div.code-tooltip,
+.md-hover-tip .md-arrow:after {
+    background: #333;
+}
+
+.popover.bottom > .arrow:after {
+    border-bottom-color: #333;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+hr {
+    height: 2px;
+    border: 0;
+    margin: 24px 0 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lucida Grande", "Corbel", sans-serif;
+    font-weight: normal;
+    clear: both;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 0;
+    color: #DEDEDE
+}
+
+h1 {
+    font-size: 2.5rem;
+    /* 36px */
+    line-height: 2.75rem;
+    /* 40px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1.5px;
+}
+
+h2 {
+    font-size: 1.63rem;
+    /* 24px */
+    line-height: 1.875rem;
+    /* 30px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.17rem;
+    /* 18px */
+    line-height: 1.5rem;
+    /* 24px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.12rem;
+    /* 16px */
+    line-height: 1.375rem;
+    /* 22px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    color: white;
+}
+
+h5 {
+    font-size: 0.97rem;
+    /* 16px */
+    line-height: 1.25rem;
+    /* 22px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 0.93rem;
+    /* 16px */
+    line-height: 1rem;
+    /* 16px */
+    margin-bottom: 0.75rem;
+    color: white;
+}
+
+@media (min-width: 980px) {
+    h3.md-focus:before,
+    h4.md-focus:before,
+    h5.md-focus:before,
+    h6.md-focus:before {
+        color: #ddd;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        position: absolute;
+        left: -1.642857143rem;
+        top: .357142857rem;
+        float: left;
+        font-size: 9px;
+        padding-left: 2px;
+        padding-right: 2px;
+        vertical-align: bottom;
+        font-weight: normal;
+        line-height: normal;
+    }
+
+    h3.md-focus:before {
+        content: 'h3';
+    }
+
+    h4.md-focus:before {
+        content: 'h4';
+    }
+
+    h5.md-focus:before {
+        content: 'h5';
+        top: 0px;
+    }
+
+    h6.md-focus:before {
+        content: 'h6';
+        top: 0px;
+    }
+}
+
+a {
+    text-decoration: none;
+    outline: 0;
+}
+
+a:hover {
+    outline: 0;
+}
+
+a:focus {
+    outline: thin dotted;
+}
+
+sup.md-footnote {
+    background-color: #555;
+    color: #ddd;
+}
+
+p {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+p,
+ul,
+dd,
+ol,
+hr,
+address,
+pre,
+table,
+iframe,
+.wp-caption,
+.wp-audio-shortcode,
+.wp-video-shortcode {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    /* 24px */
+}
+
+li > blockquote {
+	margin-bottom: 0;
+}
+
+audio:not([controls]) {
+    display: none;
+}
+
+[hidden] {
+    display: none;
+}
+
+::-moz-selection {
+    background: #4a89dc;
+    color: #fff;
+    text-shadow: none;
+}
+
+*.in-text-selection,
+::selection {
+    background: #4a89dc;
+    color: #fff;
+    text-shadow: none;
+}
+
+ul,
+ol {
+    padding: 0 0 0 1.875rem;
+    /* 30px */
+}
+
+ul {
+    list-style: square;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+    margin: 0;
+}
+
+b,
+th,
+dt,
+strong {
+    font-weight: bold;
+}
+
+i,
+em,
+dfn,
+cite {
+    font-style: italic;
+}
+
+blockquote {
+    padding-left: 1.875rem;
+    margin: 0 0 1.875rem 1.875rem;
+    border-left: solid 2px #474d54;
+    padding-left: 30px;
+    margin-top: 35px;
+}
+
+pre,
+code,
+kbd,
+tt,
+var {
+    font-size: 0.875rem;
+    font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+code,
+tt,
+var {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+kbd {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #fff;
+    background-color: #333;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+}
+
+pre.md-fences {
+    padding: 10px 10px 10px 30px;
+    margin-bottom: 20px;
+    background: #333;
+}
+
+.CodeMirror-gutters {
+    background: #333;
+    border-right: 1px solid transparent;
+}
+
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
+    bottom: -2.2em;
+    right: 4px;
+}
+
+code,
+kbd,
+tt,
+var {
+    padding: 2px 5px;
+}
+
+table {
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th,
+td {
+    padding: 5px 10px;
+    vertical-align: top;
+}
+
+a {
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+hr {
+    background: #474d54;
+    /* variable */
+}
+
+h1 {
+    margin-top: 2em;
+}
+
+a {
+    color: #e0e0e0;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #fff;
+}
+
+.md-inline-math script {
+    color: #81b1db;
+}
+
+b,
+th,
+dt,
+strong {
+    color: #DEDEDE;
+    /* variable */
+}
+
+mark {
+    background: #D3D40E;
+}
+
+blockquote {
+    color: #9DA2A6;
+}
+
+table a {
+    color: #DEDEDE;
+    /* variable */
+}
+
+th,
+td {
+    border: solid 1px #474d54;
+    /* variable */
+}
+
+.task-list {
+    padding-left: 0;
+}
+
+.md-task-list-item {
+    padding-left: 1.25rem;
+}
+
+.md-task-list-item > input {
+    top: auto;
+}
+
+.md-task-list-item > input:before {
+    content: "";
+    display: inline-block;
+    width: 0.875rem;
+    height: 0.875rem;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #b8bfc6;
+    background-color: #363B40;
+    margin-top: -0.4rem;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before {
+    content: '\221A';
+    /*◘*/
+    font-size: 0.625rem;
+    line-height: 0.625rem;
+    color: #DEDEDE;
+}
+
+/** quick open **/
+.auto-suggest-container {
+    border: 0px;
+    background-color: #525C65;
+}
+
+#typora-quick-open {
+    background-color: #525C65;
+}
+
+#typora-quick-open input{
+    background-color: #525C65;
+    border: 0;
+    border-bottom: 1px solid grey;
+}
+
+.typora-quick-open-item {
+    background-color: inherit;
+    color: inherit;
+}
+
+.typora-quick-open-item.active,
+.typora-quick-open-item:hover {
+    background-color: #4D8BDB;
+    color: white;
+}
+
+.typora-quick-open-item:hover {
+    background-color: rgba(77, 139, 219, 0.8);
+}
+
+.typora-search-spinner > div {
+  background-color: #fff;
+}
+
+#write pre.md-meta-block {
+    border-bottom: 1px dashed #ccc;
+    background: transparent;
+    padding-bottom: 0.6em;
+    line-height: 1.6em;
+}
+
+.btn,
+.btn .btn-default {
+    background: transparent;
+    color: #b8bfc6;
+}
+
+.ty-table-edit {
+    border-top: 1px solid gray;
+    background-color: #363B40;
+}
+
+.popover-title {
+    background: transparent;
+}
+
+.md-image>.md-meta {
+    color: #BBBBBB;
+    background: transparent;
+}
+
+.md-expand.md-image>.md-meta {
+    color: #DDD;
+}
+
+#write>h3:before,
+#write>h4:before,
+#write>h5:before,
+#write>h6:before {
+    border: none;
+    border-radius: 0px;
+    color: #888;
+    text-decoration: underline;
+    left: -1.4rem;
+    top: 0.2rem;
+}
+
+#write>h3.md-focus:before {
+    top: 2px;
+}
+
+#write>h4.md-focus:before {
+    top: 2px;
+}
+
+.md-toc-item {
+    color: #A8C2DC;
+}
+
+#write div.md-toc-tooltip {
+    background-color: #363B40;
+}
+
+.dropdown-menu .btn:hover,
+.dropdown-menu .btn:focus,
+.md-toc .btn:hover,
+.md-toc .btn:focus {
+    color: white;
+    background: black;
+}
+
+#toc-dropmenu {
+    background: rgba(50, 54, 59, 0.93);
+    border: 1px solid rgba(253, 253, 253, 0.15);
+}
+
+#toc-dropmenu .divider {
+    background-color: #9b9b9b;
+}
+
+.outline-expander:before {
+    top: 2px;
+}
+
+#typora-sidebar {
+    box-shadow: none;
+    border-right: 1px dashed;
+    border-right: none;
+}
+
+.sidebar-tabs {
+    border-bottom:0;
+}
+
+#typora-sidebar:hover .outline-title-wrapper {
+    border-left: 1px dashed;
+}
+
+.outline-title-wrapper .btn {
+    color: inherit;
+}
+
+.outline-item:hover {
+    border-color: #363B40;
+    background-color: #363B40;
+    color: white;
+}
+
+h1.md-focus .md-attr,
+h2.md-focus .md-attr,
+h3.md-focus .md-attr,
+h4.md-focus .md-attr,
+h5.md-focus .md-attr,
+h6.md-focus .md-attr,
+.md-header-span .md-attr {
+    color: #8C8E92;
+    display: inline;
+}
+
+.md-comment {
+    color: #5a95e3;
+    opacity: 1;
+}
+
+.md-inline-math svg {
+    color: #b8bfc6;
+}
+
+#math-inline-preview .md-arrow:after {
+    background: black;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    border: 0;
+}
+
+.modal-title {
+    font-size: 1.5em;
+}
+
+.modal-content input {
+    background-color: rgba(26, 21, 21, 0.51);
+    color: white;
+}
+
+.modal-content .input-group-addon {
+    color: white;
+}
+
+.modal-backdrop {
+    background-color: rgba(174, 174, 174, 0.7);
+}
+
+.modal-content .btn-primary {
+    border-color: var(--primary-color);
+}
+
+.md-table-resize-popover {
+    background-color: #333;
+}
+
+.form-inline .input-group .input-group-addon {
+    color: white;
+}
+
+#md-searchpanel {
+    border-bottom: 1px dashed grey;
+}
+
+/** UI for electron */
+
+.context-menu,
+#spell-check-panel,
+#footer-word-count-info {
+    background-color: #42464A;
+}
+
+.context-menu.dropdown-menu .divider,
+.dropdown-menu .divider {
+    background-color: #777777;
+}
+
+footer {
+    color: inherit;
+}
+
+@media (max-width: 1000px) {
+    footer {
+        border-top: none;
+    }
+    footer:hover {
+        color: inherit;
+    }
+}
+
+#file-info-file-path .file-info-field-value:hover {
+    background-color: #555;
+    color: #dedede;
+}
+
+.megamenu-content,
+.megamenu-opened header {
+    background: var(--bg-color);
+}
+
+.megamenu-menu-panel h2,
+.megamenu-menu-panel h1,
+.long-btn {
+    color: inherit;
+}
+
+.megamenu-menu-panel input[type='text'] {
+    background: inherit;
+    border: 0;
+    border-bottom: 1px solid;
+}
+
+#recent-file-panel-action-btn {
+    background: inherit;
+    border: 1px grey solid;
+}
+
+.megamenu-menu-panel .dropdown-menu > li > a {
+    color: inherit;
+    background-color: #2F353A;
+    text-decoration: none;
+}
+
+.megamenu-menu-panel table td:nth-child(1) {
+    color: inherit;
+    font-weight: bold;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(1) {
+    color: white;
+}
+
+.modal-footer .btn-default, 
+.modal-footer .btn-primary,
+.modal-footer .btn-default:not(:hover) {
+    border: 1px solid;
+    border-color: transparent;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    color: white;
+    border: 1px solid #ddd;
+    background-color: inherit;
+}
+
+.modal-header {
+    border-bottom: 0;
+}
+
+.modal-footer {
+    border-top: 0;
+}
+
+#recent-file-panel tbody tr:nth-child(2n-1) {
+    background-color: transparent !important;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+    border: 1px solid #eee;
+    background: transparent;
+}
+
+.mouse-hover .toolbar-icon.btn:hover,
+#w-full.mouse-hover,
+#w-pin.mouse-hover {
+    background-color: inherit;
+}
+
+.typora-node::-webkit-scrollbar {
+    width: 5px;
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical {
+    background: rgba(250, 250, 250, 0.3);
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(250, 250, 250, 0.5);
+}
+
+#w-unpin {
+    background-color: #4182c4;
+}
+
+#top-titlebar, #top-titlebar * {
+    color: var(--item-hover-text-color);
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+#footer-word-count:hover,
+.ty-show-word-count #footer-word-count {
+    background: #333333;
+}
+
+#toggle-sourceview-btn:hover {
+    color: #eee;
+    background: #333333;
+}
+
+/** focus mode */
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) * {
+    color: #686868 !important;
+}
+
+.on-focus-mode .md-end-block:not(.md-focus) img,
+.on-focus-mode .md-task-list-item:not(.md-focus-container)>input {
+    opacity: #686868 !important;
+}
+
+.on-focus-mode li[cid]:not(.md-focus-container){
+    color: #686868;
+}
+
+.on-focus-mode .md-fences.md-focus .CodeMirror-code>*:not(.CodeMirror-activeline) *,
+.on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) * {
+    color: #686868 !important;
+}
+
+.on-focus-mode .md-focus,
+.on-focus-mode .md-focus-container {
+    color: #fff;
+}
+
+.on-focus-mode #typora-source .CodeMirror-code>*:not(.CodeMirror-activeline) * {
+    color: #686868 !important;
+}
+
+
+/*diagrams*/
+#write .md-focus .md-diagram-panel {
+    border: 1px solid #ddd;
+    margin-left: -1px;
+    width: calc(100% + 2px);
+}
+
+/*diagrams*/
+#write .md-focus.md-fences-with-lineno .md-diagram-panel {
+    margin-left: auto;
+}
+
+.md-diagram-panel-error {
+    color: #f1908e;
+}
+
+.active-tab-files #info-panel-tab-file,
+.active-tab-files #info-panel-tab-file:hover,
+.active-tab-outline #info-panel-tab-outline,
+.active-tab-outline #info-panel-tab-outline:hover {
+    color: #eee;
+}
+
+.sidebar-footer-item:hover,
+.footer-item:hover {
+    background: inherit;
+    color: white;
+}
+
+.ty-side-sort-btn.active,
+.ty-side-sort-btn:hover,
+.selected-folder-menu-item a:after {
+    color: white;
+}
+
+#sidebar-files-menu {
+    border:solid 1px;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.79);
+    background-color: var(--bg-color);
+}
+
+.file-list-item {
+    border-bottom:none;
+}
+
+.file-list-item-summary {
+    opacity: 1;
+}
+
+.file-list-item.active:first-child {
+    border-top: none;
+}
+
+.file-node-background {
+    height: 32px;
+}
+
+.file-library-node.active>.file-node-content,
+.file-list-item.active {
+    color: white;
+    color: var(--active-file-text-color);
+}
+
+.file-library-node.active>.file-node-background{
+    background-color: rgb(34, 34, 34);
+    background-color: var(--active-file-bg-color);
+}
+.file-list-item.active {
+    background-color: rgb(34, 34, 34);
+    background-color: var(--active-file-bg-color);
+}
+
+#ty-tooltip {
+    background-color: black;
+    color: #eee;
+}
+
+.md-task-list-item>input {
+    margin-left: -1.3em;
+    margin-top: 0.3rem;
+    -webkit-appearance: none;
+}
+
+.md-mathjax-midline {
+    background-color: #57616b;
+    border-bottom: none;
+}
+
+footer.ty-footer {
+    border-color: #656565;
+}
+
+.ty-preferences .btn-default {
+    background: transparent;
+}
+.ty-preferences .btn-default:hover {
+    background: #57616b;
+}
+
+.ty-preferences select {
+    border: 1px solid #989698;
+    height: 21px;
+}
+
+.ty-preferences .nav-group-item.active {
+    background: var(--item-hover-bg-color);
+}
+
+.ty-preferences input[type="search"] {
+    border-color: #333;
+    background: #333;
+    line-height: 22px;
+    border-radius: 6px;
+    color: white;
+}
+
+.ty-preferences input[type="search"]:focus {
+    box-shadow: none;
+}
+
+[data-is-directory="true"] .file-node-content {
+    margin-bottom: 0;
+}
+
+.file-node-title {
+    line-height: 22px;
+}
+
+.html-for-mac .file-node-open-state, .html-for-mac .file-node-icon {
+    line-height: 26px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(230, 230, 230, 0.30);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: rgba(230, 230, 230, 0.50);
+}
+
+#typora-sidebar:hover div.sidebar-content-content::-webkit-scrollbar-thumb:horizontal {
+    background: rgba(230, 230, 230, 0.30);
+}
+
+.nav-group-item:active {
+    background-color: #474d54;
+}
+
+.md-search-hit {
+    background: rgba(199, 140, 60, 0.81);
+    color: #eee;
+}
+
+.md-search-hit * {
+    color: #eee;
+}
+
+#md-searchpanel input {
+    color: white;
+}
+
+.export-detail,
+.export-item.active,
+.export-items-list-control {
+    background: #d6d6d4
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="第九章-顺序容器" class="md-header-anchor"></a><span>第九章 顺序容器</span></h1><h2><a name="顺序容器概述" class="md-header-anchor"></a><span>顺序容器概述</span></h2><ul><li><strong><span>顺序容器</span></strong><span>（sequential container）：为程序员提供了控制元素存储和访问顺序的能力。这种顺序不依赖于元素的值，而是与元素加入容器时的位置相对应。</span></li></ul><h3><a name="顺序容器类型" class="md-header-anchor"></a><span>顺序容器类型</span></h3><figure><table><thead><tr><th><span>容器类型</span></th><th><span>介绍</span></th></tr></thead><tbody><tr><td><code>vector</code></td><td><span>可变大小数组。支持快速随机访问。在尾部之外的位置插入或删除元素可能很慢。</span></td></tr><tr><td><code>deque</code></td><td><span>双端队列。支持快速随机访问。在头尾位置插入/删除速度很快。</span></td></tr><tr><td><code>list</code></td><td><span>双向链表。只支持双向顺序访问。在</span><code>list</code><span>中任何位置进行插入/删除操作速度都很快。</span></td></tr><tr><td><code>forward_list</code></td><td><span>单向链表。只支持单向顺序访问。在链表任何位置进行插入/删除操作速度都很快。</span></td></tr><tr><td><code>array</code></td><td><span>固定大小数组。支持快速随机访问。不能添加或者删除元素。</span></td></tr><tr><td><code>string</code></td><td><span>与</span><code>vector</code><span>相似的容器，但专门用于保存字符。随机访问块。在尾部插入/删除速度快。</span></td></tr></tbody></table></figure><ul><li><span>除了固定大小的</span><code>array</code><span>外，其他容器都提供高效、灵活的内存管理。</span></li><li><code>forward_list</code><span>和</span><code>array</code><span>是新C++标准增加的类型。</span></li><li><span>通常使用</span><code>vector</code><span>是最好的选择，除非你有很好的理由选择其他容器。</span></li><li><span>新标准库的容器比旧版的快得多。</span></li></ul><h2><a name="容器操作" class="md-header-anchor"></a><span>容器操作</span></h2><h3><a name="类型" class="md-header-anchor"></a><span>类型</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>iterator</code></td><td><span>此容器类型的迭代器类型</span></td></tr><tr><td><code>const_iterator</code></td><td><span>可以读取元素但不能修改元素的迭代器类型</span></td></tr><tr><td><code>size_type</code></td><td><span>无符号整数类型，足够保存此种容器类型最大可能的大小</span></td></tr><tr><td><code>difference_type</code></td><td><span>带符号整数类型，足够保存两个迭代器之间的距离</span></td></tr><tr><td><code>value_type</code></td><td><span>元素类型</span></td></tr><tr><td><code>reference</code></td><td><span>元素的左值类型；和</span><code>value_type &amp;</code><span>含义相同</span></td></tr><tr><td><code>const_reference</code></td><td><span>元素的</span><code>const</code><span>左值类型，即</span><code>const value_type &amp;</code></td></tr></tbody></table></figure><h3><a name="构造函数" class="md-header-anchor"></a><span>构造函数</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>C c;</code></td><td><span>默认构造函数，构造空容器</span></td></tr><tr><td><code>C c1(c2);</code><span>或</span><code>C c1 = c2;</code></td><td><span>构造</span><code>c2</code><span>的拷贝</span><code>c1</code></td></tr><tr><td><code>C c(b, e)</code></td><td><span>构造</span><code>c</code><span>，将迭代器</span><code>b</code><span>和</span><code>e</code><span>指定范围内的所有元素拷贝到</span><code>c</code></td></tr><tr><td><code>C c(a, b, c...)</code></td><td><span>列表初始化</span><code>c</code></td></tr><tr><td><code>C c(n)</code></td><td><span>只支持顺序容器，且不包括</span><code>array</code><span>，包含</span><code>n</code><span>个元素，这些元素进行了值初始化</span></td></tr><tr><td><code>C c(n, t)</code></td><td><span>包含</span><code>n</code><span>个初始值为</span><code>t</code><span>的元素</span></td></tr></tbody></table></figure><ul><li><span>只有顺序容器的构造函数才接受大小参数，关联容器并不支持。</span></li><li><code>array</code><span>具有固定大小。</span></li><li><span>和其他容器不同，默认构造的</span><code>array</code><span>是非空的。</span></li><li><span>直接复制：将一个容器复制给另一个容器时，类型必须匹配：容器类型和元素类型都必须相同。</span></li><li><span>使用迭代器复制：不要求容器类型相同，容器内的元素类型也可以不同。</span></li></ul><h3><a name="赋值和swap" class="md-header-anchor"></a><span>赋值和</span><code>swap</code></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>c1 = c2;</code></td><td><span>将</span><code>c1</code><span>中的元素替换成</span><code>c2</code><span>中的元素</span></td></tr><tr><td><code>c1 = {a, b, c...}</code></td><td><span>将</span><code>c1</code><span>中的元素替换成列表中的元素（不适用于</span><code>array</code><span>）</span></td></tr><tr><td><code>c1.swap(c2)</code></td><td><span>交换</span><code>c1</code><span>和</span><code>c2</code><span>的元素</span></td></tr><tr><td><code>swap(c1, c2)</code></td><td><span>等价于</span><code>c1.swap(c2)</code></td></tr><tr><td><code>c.assign(b, e)</code></td><td><span>将</span><code>c</code><span>中的元素替换成迭代器</span><code>b</code><span>和</span><code>e</code><span>表示范围中的元素，</span><code>b</code><span>和</span><code>e</code><span>不能指向</span><code>c</code><span>中的元素</span></td></tr><tr><td><code>c.assign(il)</code></td><td><span>将</span><code>c</code><span>中的元素替换成初始化列表</span><code>il</code><span>中的元素</span></td></tr><tr><td><code>c.assign(n, r)</code></td><td><span>将</span><code>c</code><span>中的元素替换为</span><code>n</code><span>个值是</span><code>t</code><span>的元素</span></td></tr></tbody></table></figure><ul><li><span>使用非成员版本的</span><code>swap</code><span>是一个好习惯。</span></li><li><code>assign</code><span>操作不适用于关联容器和</span><code>array</code></li></ul><h3><a name="大小" class="md-header-anchor"></a><span>大小</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>c.size()</code></td><td><code>c</code><span>中元素的数目（不支持</span><code>forward_list</code><span>）</span></td></tr><tr><td><code>c.max_size()</code></td><td><code>c</code><span>中可保存的最大元素数目</span></td></tr><tr><td><code>c.empty()</code></td><td><span>若</span><code>c</code><span>中存储了元素，返回</span><code>false</code><span>，否则返回</span><code>true</code></td></tr></tbody></table></figure><h3><a name="添加元素" class="md-header-anchor"></a><span>添加元素</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>c.push_back(t)</code></td><td><span>在</span><code>c</code><span>尾部创建一个值为</span><code>t</code><span>的元素，返回</span><code>void</code></td></tr><tr><td><code>c.emplace_back(args)</code></td><td><span>同上</span></td></tr><tr><td><code>c.push_front(t)</code></td><td><span>在</span><code>c</code><span>头部创建一个值为</span><code>t</code><span>的元素，返回</span><code>void</code></td></tr><tr><td><code>c.emplace_front(args)</code></td><td><span>同上</span></td></tr><tr><td><code>c.insert(p, t)</code></td><td><span>在迭代器</span><code>p</code><span>指向的元素之前创建一个值是</span><code>t</code><span>的元素，返回指向新元素的迭代器</span></td></tr><tr><td><code>c.emplace(p, args)</code></td><td><span>同上</span></td></tr><tr><td><code>c.inset(p, n, t)</code></td><td><span>在迭代器</span><code>p</code><span>指向的元素之前插入</span><code>n</code><span>个值为</span><code>t</code><span>的元素，返回指向第一个新元素的迭代器；如果</span><code>n</code><span>是0，则返回</span><code>p</code></td></tr><tr><td><code>c.insert(p, b, e)</code></td><td><span>将迭代器</span><code>b</code><span>和</span><code>e</code><span>范围内的元素，插入到</span><code>p</code><span>指向的元素之前；如果范围为空，则返回</span><code>p</code></td></tr><tr><td><code>c.insert(p, il)</code></td><td><code>il</code><span>是一个花括号包围中的元素值列表，将其插入到</span><code>p</code><span>指向的元素之前；如果</span><code>il</code><span>是空，则返回</span><code>p</code></td></tr></tbody></table></figure><ul><li><span>因为这些操作会改变大小，因此不适用于</span><code>array</code><span>。</span></li><li><code>forward_list</code><span>有自己专有版本的</span><code>insert</code><span>和</span><code>emplace</code><span>。</span></li><li><code>forward_list</code><span>不支持</span><code>push_back</code><span>和</span><code>emplace_back</code><span>。</span></li><li><span>当我们用一个对象去初始化容器或者将对象插入到容器时，实际上放入的是对象的拷贝。</span></li><li><code>emplace</code><span>开头的函数是新标准引入的，这些操作是构造而不是拷贝元素。</span></li><li><span>传递给</span><code>emplace</code><span>的参数必须和元素类型的构造函数相匹配。</span></li></ul><h3><a name="访问元素" class="md-header-anchor"></a><span>访问元素</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>c.back()</code></td><td><span>返回</span><code>c</code><span>中尾元素的引用。若</span><code>c</code><span>为空，函数行为未定义</span></td></tr><tr><td><code>c.front()</code></td><td><span>返回</span><code>c</code><span>中头元素的引用。若</span><code>c</code><span>为空，函数行为未定义</span></td></tr><tr><td><code>c[n]</code></td><td><span>返回</span><code>c</code><span>中下标是</span><code>n</code><span>的元素的引用，</span><code>n</code><span>时候一个无符号证书。若</span><code>n&gt;=c.size()</code><span>，则函数行为未定义</span></td></tr><tr><td><code>c.at(n)</code></td><td><span>返回下标为</span><code>n</code><span>的元素引用。如果下标越界，则抛出</span><code>out_of_range</code><span>异常</span></td></tr></tbody></table></figure><ul><li><span>访问成员函数返回的是引用。</span></li><li><code>at</code><span>和下标操作只适用于</span><code>string</code><span>、</span><code>vector</code><span>、</span><code>deque</code><span>、</span><code>array</code><span>。</span></li><li><code>back</code><span>不适用于</span><code>forward_list</code><span>。</span></li><li><span>如果希望下标是合法的，可以使用</span><code>at</code><span>函数。</span></li></ul><h3><a name="删除元素" class="md-header-anchor"></a><span>删除元素</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>c.pop_back()</code></td><td><span>删除</span><code>c</code><span>中尾元素，若</span><code>c</code><span>为空，则函数行为未定义。函数返回</span><code>void</code></td></tr><tr><td><code>c.pop_front()</code></td><td><span>删除</span><code>c</code><span>中首元素，若</span><code>c</code><span>为空，则函数行为未定义。函数返回</span><code>void</code></td></tr><tr><td><code>c.erase(p)</code></td><td><span>删除迭代器</span><code>p</code><span>指向的元素，返回一个指向被删除元素之后的元素的迭代器，若</span><code>p</code><span>本身是尾后迭代器，则函数行为未定义</span></td></tr><tr><td><code>c.erase(b, e)</code></td><td><span>删除迭代器</span><code>b</code><span>和</span><code>e</code><span>范围内的元素，返回指向最后一个被删元素之后元素的迭代器，若</span><code>e</code><span>本身就是尾后迭代器，则返回尾后迭代器</span></td></tr><tr><td><code>c.clear()</code></td><td><span>删除</span><code>c</code><span>中所有元素，返回</span><code>void</code></td></tr></tbody></table></figure><ul><li><span>会改变容器大小，不适用于</span><code>array</code><span>。</span></li><li><code>forward_list</code><span>有特殊版本的</span><code>erase</code></li><li><code>forward_list</code><span>不支持</span><code>pop_back</code></li><li><code>vector</code><span>和</span><code>string</code><span>不支持</span><code>pop_front</code></li></ul><h3><a name="特殊的forwadlist操作" class="md-header-anchor"></a><span>特殊的forwad_list操作</span></h3><ul><li><span>链表在删除元素时需要修改前置节点的内容，双向链表会前驱的指针，但是单向链表没有保存，因此需要增加获取前置节点的方法。</span></li><li><code>forward_list</code><span>定义了</span><code>before_begin</code><span>，即首前（off-the-begining）迭代器，允许我们再在首元素之前添加或删除元素。</span></li></ul><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>lst.before_begin()</code></td><td><span>返回指向链表首元素之前不存在的元素的迭代器，此迭代器不能解引用。</span></td></tr><tr><td><code>lst.cbefore_begin()</code></td><td><span>同上，但是返回的是常量迭代器。</span></td></tr><tr><td><code>lst.insert_after(p, t)</code></td><td><span>在迭代器</span><code>p</code><span>之后插入元素。</span><code>t</code><span>是一个对象</span></td></tr><tr><td><code>lst.insert_after(p, n, t)</code></td><td><span>在迭代器</span><code>p</code><span>之后插入元素。</span><code>t</code><span>是一个对象，</span><code>n</code><span>是数量。若</span><code>n</code><span>是0则函数行为未定义</span></td></tr><tr><td><code>lst.insert_after(p, b, e)</code></td><td><span>在迭代器</span><code>p</code><span>之后插入元素。由迭代器</span><code>b</code><span>和</span><code>e</code><span>指定范围。</span></td></tr><tr><td><code>lst.insert_after(p, il)</code></td><td><span>在迭代器</span><code>p</code><span>之后插入元素。由</span><code>il</code><span>指定初始化列表。</span></td></tr><tr><td><code>emplace_after(p, args)</code></td><td><span>使用</span><code>args</code><span>在</span><code>p</code><span>之后的位置，创建一个元素，返回一个指向这个新元素的迭代器。若</span><code>p</code><span>为尾后迭代器，则函数行为未定义。</span></td></tr><tr><td><code>lst.erase_after(p)</code></td><td><span>删除</span><code>p</code><span>指向位置之后的元素，返回一个指向被删元素之后的元素的迭代器，若</span><code>p</code><span>指向</span><code>lst</code><span>的尾元素或者是一个尾后迭代器，则函数行为未定义。</span></td></tr><tr><td><code>lst.erase_after(b, e)</code></td><td><span>类似上面，删除对象换成从</span><code>b</code><span>到</span><code>e</code><span>指定的范围。</span></td></tr></tbody></table></figure><h3><a name="改变容器大小" class="md-header-anchor"></a><span>改变容器大小</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>c.resize(n)</code></td><td><span>调整</span><code>c</code><span>的大小为</span><code>n</code><span>个元素，若</span><code>n&lt;c.size()</code><span>，则多出的元素被丢弃。若必须添加新元素，对新元素进行值初始化</span></td></tr><tr><td><code>c.resize(n, t)</code></td><td><span>调整</span><code>c</code><span>的大小为</span><code>n</code><span>个元素，任何新添加的元素都初始化为值</span><code>t</code></td></tr></tbody></table></figure><h3><a name="获取迭代器" class="md-header-anchor"></a><span>获取迭代器</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>c.begin()</code><span>, </span><code>c.end()</code></td><td><span>返回指向</span><code>c</code><span>的首元素和尾元素之后位置的迭代器</span></td></tr><tr><td><code>c.cbegin()</code><span>, </span><code>c.cend()</code></td><td><span>返回</span><code>const_iterator</code></td></tr></tbody></table></figure><ul><li><span>以</span><code>c</code><span>开头的版本是C++11新标准引入的</span></li><li><span>当不需要写访问时，应该使用</span><code>cbegin</code><span>和</span><code>cend</code><span>。</span></li></ul><h3><a name="反向容器的额外成员" class="md-header-anchor"></a><span>反向容器的额外成员</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>reverse_iterator</code></td><td><span>按逆序寻址元素的迭代器</span></td></tr><tr><td><code>const_reverse_iterator</code></td><td><span>不能修改元素的逆序迭代器</span></td></tr><tr><td><code>c.rbegin()</code><span>, </span><code>c.rend()</code></td><td><span>返回指向</span><code>c</code><span>的尾元素和首元素之前位置的迭代器</span></td></tr><tr><td><code>c.crbegin()</code><span>, </span><code>c.crend()</code></td><td><span>返回</span><code>const_reverse_iterator</code></td></tr></tbody></table></figure><ul><li><span>不支持</span><code>forward_list</code></li></ul><h3><a name="迭代器" class="md-header-anchor"></a><span>迭代器</span></h3><ul><li><p><span>迭代器范围：</span><code>begin</code><span>到</span><code>end</code><span>，即第一个元素到最后一个元素的后面一个位置。</span></p></li><li><p><span>左闭合区间：</span><code>[begin, end)</code></p></li><li><p><span>左闭合范围蕴含的编程设定：</span></p><ul><li><span>如果</span><code>begin</code><span>和</span><code>end</code><span>相等，则范围为空。</span></li><li><span>如果二者不等，则范围至少包含一个元素，且</span><code>begin</code><span>指向该范围中的第一个元素。</span></li><li><span>可以对</span><code>begin</code><span>递增若干次，使得</span><code>begin == end</code><span>。</span></li></ul></li></ul><h3><a name="容器操作可能使迭代器失效" class="md-header-anchor"></a><span>容器操作可能使迭代器失效</span></h3><ul><li><p><span>在向容器添加元素后：</span></p><ul><li><span>如果容器是</span><code>vector</code><span>或</span><code>string</code><span>，且存储空间被重新分配，则指向容器的迭代器、指针、引用都会失效。</span></li><li><span>对于</span><code>deque</code><span>，插入到除首尾位置之外的任何位置都会导致指向容器的迭代器、指针、引用失效。如果在首尾位置添加元素，迭代器会失效，但指向存在元素的引用和指针不会失效。</span></li><li><span>对于</span><code>list</code><span>和</span><code>forward_list</code><span>，指向容器的迭代器、指针和引用依然有效。</span></li></ul></li><li><p><span>在从一个容器中删除元素后：</span></p><ul><li><span>对于</span><code>list</code><span>和</span><code>forward_list</code><span>，指向容器其他位置的迭代器、引用和指针仍然有效。</span></li><li><span>对于</span><code>deque</code><span>，如果在首尾之外的任何位置删除元素，那么指向被删除元素外其他元素的迭代器、指针、引用都会失效；如果是删除</span><code>deque</code><span>的尾元素，则尾后迭代器会失效，但其他不受影响；如果删除的是</span><code>deque</code><span>的头元素，这些也不会受影响。</span></li><li><span>对于</span><code>vector</code><span>和</span><code>string</code><span>，指向被删元素之前的迭代器、引用、指针仍然有效。</span></li><li><span>注意：当我们删除元素时，尾后迭代器总是会失效。</span></li><li><span>注意：使用失效的迭代器、指针、引用是严重的运行时错误！</span></li><li><span>建议：将要求迭代器必须保持有效的程序片段最小化。</span></li><li><span>建议：不要保存</span><code>end</code><span>返回的迭代器。</span></li></ul></li></ul><h3><a name="容器内元素的类型约束" class="md-header-anchor"></a><span>容器内元素的类型约束</span></h3><ul><li><span>元素类型必须支持赋值运算；</span></li><li><span>元素类型的对象必须可以复制。</span></li><li><span>除了输入输出标准库类型外，其他所有标准库类型都是有效的容器元素类型。</span></li></ul><h2><a name="vector对象是如何增长的" class="md-header-anchor"></a><span>vector对象是如何增长的</span></h2><p><code>vector</code><span>和</span><code>string</code><span>在内存中是连续保存的，如果原先分配的内存位置已经使用完，则需要重新分配新空间，将已有元素从就位置移动到新空间中，然后添加新元素。</span></p><h3><a name="管理容量的成员函数" class="md-header-anchor"></a><span>管理容量的成员函数</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>c.shrink_to_fit()</code></td><td><span>将</span><code>capacity()</code><span>减少到和</span><code>size()</code><span>相同大小</span></td></tr><tr><td><code>c.capacity()</code></td><td><span>不重新分配内存空间的话，</span><code>c</code><span>可以保存多少个元素</span></td></tr><tr><td><code>c.reverse(n)</code></td><td><span>分配至少能容纳</span><code>n</code><span>个元素的内存空间</span></td></tr></tbody></table></figure><ul><li><code>shrink_to_fit</code><span>只适用于</span><code>vector</code><span>、</span><code>string</code><span>和</span><code>deque</code></li><li><code>capacity</code><span>和</span><code>reverse</code><span>只适用于</span><code>vector</code><span>和</span><code>string</code><span>。</span></li></ul><h2><a name="额外的string操作" class="md-header-anchor"></a><span>额外的string操作</span></h2><h3><a name="构造string的其他方法" class="md-header-anchor"></a><span>构造string的其他方法</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>string s(cp, n)</code></td><td><code>s</code><span>是</span><code>cp</code><span>指向的数组中前</span><code>n</code><span>个字符的拷贝，此数组</span></td></tr><tr><td><code>string s(s2, pos2)</code></td><td><code>s</code><span>是</span><code>string s2</code><span>从下标</span><code>pos2</code><span>开始的字符的拷贝。若</span><code>pos2 &gt; s2.size()</code><span>，则构造函数的行为未定义。</span></td></tr><tr><td><code>string s(s2, pos2, len2)</code></td><td><code>s</code><span>是</span><code>string s2</code><span>从下标</span><code>pos2</code><span>开始的</span><code>len2</code><span>个字符的拷贝。</span></td></tr></tbody></table></figure><ul><li><code>n</code><span>,</span><code>len2</code><span>,</span><code>pos2</code><span>都是无符号值。</span></li></ul><h3><a name="substr操作" class="md-header-anchor"></a><span>substr操作</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>s.substr(pos, n)</code></td><td><span>返回一个</span><code>string</code><span>，包含</span><code>s</code><span>中从</span><code>pos</code><span>开始的</span><code>n</code><span>个字符的拷贝。</span><code>pos</code><span>的默认值是0，</span><code>n</code><span>的默认值是</span><code>s.size() - pos</code><span>，即拷贝从</span><code>pos</code><span>开始的所有字符。</span></td></tr></tbody></table></figure><h3><a name="改变string的其他方法" class="md-header-anchor"></a><span>改变string的其他方法</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>s.insert(pos, args)</code></td><td><span>在</span><code>pos</code><span>之前插入</span><code>args</code><span>指定的字符。</span><code>pos</code><span>可以使是下标或者迭代器。接受下标的版本返回指向</span><code>s</code><span>的引用；接受迭代器的版本返回指向第一个插入字符的迭代器。</span></td></tr><tr><td><code>s.erase(pos, len)</code></td><td><span>删除从</span><code>pos</code><span>开始的</span><code>len</code><span>个字符，如果</span><code>len</code><span>被省略，则删除后面所有字符，返回指向</span><code>s</code><span>的引用。</span></td></tr><tr><td><code>s.assign(args)</code></td><td><span>将</span><code>s</code><span>中的字符替换成</span><code>args</code><span>指定的字符。返回一个指向</span><code>s</code><span>的引用。</span></td></tr><tr><td><code>s.append(args)</code></td><td><span>将</span><code>args</code><span>指定的字符追加到</span><code>s</code><span>，返回一个指向</span><code>s</code><span>的引用。</span></td></tr><tr><td><code>s.replace(range, args)</code></td><td><span>删除</span><code>s</code><span>中范围</span><code>range</code><span>中的字符，替换成</span><code>args</code><span>指定的字符。返回一个指向</span><code>s</code><span>的引用。</span></td></tr></tbody></table></figure><h3><a name="string搜索操作" class="md-header-anchor"></a><span>string搜索操作</span></h3><ul><li><code>string</code><span>类提供了6个不同的搜索函数，每个函数都有4个重载版本。</span></li><li><span>每个搜索操作都返回一个</span><code>string::size_type</code><span>值，表示匹配发生位置的下标。如果搜索失败则返回一个名为</span><code>string::npos</code><span>的</span><code>static</code><span>成员（类型是</span><code>string::size_type</code><span>，初始化值是-1，也就是</span><code>string</code><span>最大的可能大小）。</span></li></ul><figure><table><thead><tr><th><span>搜索操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>s.find(args)</code></td><td><span>查找</span><code>s</code><span>中</span><code>args</code><span>第一次出现的位置</span></td></tr><tr><td><code>s.rfind(args)</code></td><td><span>查找</span><code>s</code><span>中</span><code>args</code><span>最后一次出现的位置</span></td></tr><tr><td><code>s.find_first_of(args)</code></td><td><span>在</span><code>s</code><span>中查找</span><code>args</code><span>中任何一个字符第一次出现的位置</span></td></tr><tr><td><code>s.find_last_of(args)</code></td><td><span>在</span><code>s</code><span>中查找</span><code>args</code><span>中任何一个字符最后一次出现的位置</span></td></tr><tr><td><code>s.find_first_not_of(args)</code></td><td><span>在</span><code>s</code><span>中查找第一个不在</span><code>args</code><span>中的字符</span></td></tr><tr><td><code>s.find_first_not_of(args)</code></td><td><span>在</span><code>s</code><span>中查找最后一个不在</span><code>args</code><span>中的字符</span></td></tr></tbody></table></figure><p><span>args必须是一下的形式之一：</span></p><figure><table><thead><tr><th><code>args</code><span>形式</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>c, pos</code></td><td><span>从</span><code>s</code><span>中位置</span><code>pos</code><span>开始查找字符</span><code>c</code><span>。</span><code>pos</code><span>默认是0</span></td></tr><tr><td><code>s2, pos</code></td><td><span>从</span><code>s</code><span>中位置</span><code>pos</code><span>开始查找字符串</span><code>s</code><span>。</span><code>pos</code><span>默认是0</span></td></tr><tr><td><code>cp, pos</code></td><td><span>从</span><code>s</code><span>中位置</span><code>pos</code><span>开始查找指针</span><code>cp</code><span>指向的以空字符结尾的C风格字符串。</span><code>pos</code><span>默认是0</span></td></tr><tr><td><code>cp, pos, n</code></td><td><span>从</span><code>s</code><span>中位置</span><code>pos</code><span>开始查找指针</span><code>cp</code><span>指向的前</span><code>n</code><span>个字符。</span><code>pos</code><span>和</span><code>n</code><span>无默认值。</span></td></tr></tbody></table></figure><h3><a name="scompare的几种参数形式" class="md-header-anchor"></a><span>s.compare的几种参数形式</span></h3><p><span>逻辑类似于C标准库的</span><code>strcmp</code><span>函数，根据</span><code>s</code><span>是等于、大于还是小于参数指定的字符串，</span><code>s.compare</code><span>返回0、正数或负数。</span></p><figure><table><thead><tr><th><span>参数形式</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>s2</code></td><td><span>比较</span><code>s</code><span>和</span><code>s2</code></td></tr><tr><td><code>pos1, n1, s2</code></td><td><span>比较</span><code>s</code><span>从</span><code>pos1</code><span>开始的</span><code>n1</code><span>个字符和</span><code>s2</code></td></tr><tr><td><code>pos1, n1, s2, pos2, n2</code></td><td><span>比较</span><code>s</code><span>从</span><code>pos1</code><span>开始的</span><code>n1</code><span>个字符和</span><code>s2</code></td></tr><tr><td><code>cp</code></td><td><span>比较</span><code>s</code><span>和</span><code>cp</code><span>指向的以空字符结尾的字符数组</span></td></tr><tr><td><code>pos1, n1, cp</code></td><td><span>比较</span><code>s</code><span>从</span><code>pos1</code><span>开始的</span><code>n1</code><span>个字符和</span><code>cp</code><span>指向的以空字符结尾的字符数组</span></td></tr><tr><td><code>pos1, n1, cp, n2</code></td><td><span>比较</span><code>s</code><span>从</span><code>pos1</code><span>开始的</span><code>n1</code><span>个字符和</span><code>cp</code><span>指向的地址开始</span><code>n2</code><span>个字符</span></td></tr></tbody></table></figure><h3><a name="string和数值转换" class="md-header-anchor"></a><span>string和数值转换</span></h3><figure><table><thead><tr><th><span>转换</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>to_string(val)</code></td><td><span>一组重载函数，返回数值</span><code>val</code><span>的</span><code>string</code><span>表示。</span><code>val</code><span>可以使任何算术类型。对每个浮点类型和</span><code>int</code><span>或更大的整型，都有相应版本的</span><code>to_string()</code><span>。和往常一样，小整型会被提升。</span></td></tr><tr><td><code>stoi(s, p, b)</code></td><td><span>返回</span><code>s</code><span>起始子串（表示整数内容）的数值，</span><code>p</code><span>是</span><code>s</code><span>中第一个非数值字符的下标，默认是0，</span><code>b</code><span>是转换所用的基数。返回</span><code>int</code></td></tr><tr><td><code>stol(s, p, b)</code></td><td><span>返回</span><code>long</code></td></tr><tr><td><code>stoul(s, p, b)</code></td><td><span>返回</span><code>unsigned long</code></td></tr><tr><td><code>stoll(s, p, b)</code></td><td><span>返回</span><code>long long</code></td></tr><tr><td><code>stoull(s, p, b)</code></td><td><span>返回</span><code>unsigned long long</code></td></tr><tr><td><code>stof(s, p)</code></td><td><span>返回</span><code>s</code><span>起始子串（表示浮点数内容）的数值，</span><code>p</code><span>是</span><code>s</code><span>中第一个非数值字符的下标，默认是0。返回</span><code>float</code></td></tr><tr><td><code>stod(s, p)</code></td><td><span>返回</span><code>double</code></td></tr><tr><td><code>stold(s, p)</code></td><td><span>返回</span><code>long double</code></td></tr></tbody></table></figure><h2><a name="容器适配器adapter）" class="md-header-anchor"></a><span>容器适配器（adapter）</span></h2><ul><li><span>适配器是使一事物的行为类似于另一事物的行为的一种机制，例如</span><code>stack</code><span>可以使任何一种顺序容器以栈的方式工作。</span></li><li><span>初始化 </span><code>deque&lt;int&gt; deq; stack&lt;int&gt; stk(deq);</code><span> 从</span><code>deq</code><span>拷贝元素到</span><code>stk</code><span>。</span></li><li><span>创建适配器时，指定一个顺序容器，可以覆盖默认的基础容器： </span><code>stack&lt;string, vector&lt;string&gt; &gt; str_stk;</code><span>。</span></li></ul><h3><a name="适配器的通用操作和类型" class="md-header-anchor"></a><span>适配器的通用操作和类型</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>size_type</code></td><td><span>一种类型，须以保存当前类型的最大对象的大小</span></td></tr><tr><td><code>value_type</code></td><td><span>元素类型</span></td></tr><tr><td><code>container_type</code></td><td><span>实现适配器的底层容器类型</span></td></tr><tr><td><code>A a;</code></td><td><span>创建一个名为</span><code>a</code><span>的空适配器</span></td></tr><tr><td><code>A a(c)</code></td><td><span>创建一个名为</span><code>a</code><span>的适配器，带有容器</span><code>c</code><span>的一个拷贝</span></td></tr><tr><td><span>关系运算符</span></td><td><span>每个适配器都支持所有关系运算符：</span><code>==</code><span>、</span><code>!=</code><span>、</span><code>&lt;</code><span>、 </span><code>&lt;=</code><span>、</span><code>&gt;</code><span>、</span><code>&gt;=</code><span>这些运算符返回底层容器的比较结果</span></td></tr><tr><td><code>a.empty()</code></td><td><span>若</span><code>a</code><span>包含任何元素，返回</span><code>false</code><span>;否则返回</span><code>true</code></td></tr><tr><td><code>a.size()</code></td><td><span>返回</span><code>a</code><span>中的元素数目</span></td></tr><tr><td><code>swap(a, b)</code></td><td><span>交换</span><code>a</code><span>和</span><code>b</code><span>的内容，</span><code>a</code><span>和</span><code>b</code><span>必须有相同类型，包括底层容器类型也必须相同</span></td></tr><tr><td><code>a.swap(b)</code></td><td><span>同上</span></td></tr></tbody></table></figure><h3><a name="stack" class="md-header-anchor"></a><span>stack</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>s.pop()</code></td><td><span>删除栈顶元素，不返回。</span></td></tr><tr><td><code>s.push(item)</code></td><td><span>创建一个新元素，压入栈顶，该元素通过拷贝或移动</span><code>item</code><span>而来</span></td></tr><tr><td><code>s.emplace(args)</code></td><td><span>同上，但元素由</span><code>args</code><span>来构造。</span></td></tr><tr><td><code>s.top()</code></td><td><span>返回栈顶元素，不删除。</span></td></tr></tbody></table></figure><ul><li><span>定义在</span><code>stack</code><span>头文件中。</span></li><li><code>stack</code><span>默认基于</span><code>deque</code><span>实现，也可以在</span><code>list</code><span>或</span><code>vector</code><span>之上实现。</span></li></ul><h3><a name="queue和priorityqueue" class="md-header-anchor"></a><span>queue和priority_queue</span></h3><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>q.pop()</code></td><td><span>删除队首元素，但不返回。</span></td></tr><tr><td><code>q.front()</code></td><td><span>返回队首元素的值，不删除。</span></td></tr><tr><td><code>q.back()</code></td><td><span>返回队尾元素的值，不删除。只适用于</span><code>queue</code></td></tr><tr><td><code>q.top()</code></td><td><span>返回具有最高优先级的元素值，不删除。</span></td></tr><tr><td><code>q.push(item)</code></td><td><span>在队尾压入一个新元素。</span></td></tr><tr><td><code>q.emplace(args)</code></td><td>&nbsp;</td></tr></tbody></table></figure><ul><li><span>定义在</span><code>queue</code><span>头文件中。</span></li><li><code>queue</code><span>默认基于</span><code>deque</code><span>实现，</span><code>priority_queue</code><span>默认基于</span><code>vector</code><span>实现。</span></li><li><code>queue</code><span>可以在</span><code>list</code><span>或</span><code>vector</code><span>之上实现，</span><code>priority_queue</code><span>也可以用</span><code>deque</code><span>实现。</span></li></ul></div>
+</body>
+</html>

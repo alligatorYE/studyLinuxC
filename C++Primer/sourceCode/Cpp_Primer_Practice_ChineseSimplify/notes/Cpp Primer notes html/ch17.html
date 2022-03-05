@@ -1,0 +1,1930 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>ch17</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+/* Flowchart variables */
+/* Sequence Diagram variables */
+/* Gantt chart variables */
+/* state colors */
+.label {
+  
+  color: #333; }
+
+.label text {
+  fill: #333; }
+
+.node rect,
+.node circle,
+.node ellipse,
+.node polygon {
+  fill: #BDD5EA;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+.node .label {
+  text-align: center; }
+
+.node.clickable {
+  cursor: pointer; }
+
+.arrowheadPath {
+  fill: lightgrey; }
+
+.edgePath .path {
+  stroke: lightgrey;
+  stroke-width: 1.5px; }
+
+.edgeLabel {
+  background-color: #e8e8e8;
+  text-align: center; }
+
+.cluster rect {
+  fill: #6D6D65;
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 1px; }
+
+.cluster text {
+  fill: #F9FFFE; }
+
+div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  
+  font-size: 12px;
+  background: #6D6D65;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+.actor {
+  stroke: #81B1DB;
+  fill: #BDD5EA; }
+
+text.actor {
+  fill: black;
+  stroke: none; }
+
+.actor-line {
+  stroke: lightgrey; }
+
+.messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: lightgrey; }
+
+.messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: lightgrey; }
+
+#arrowhead {
+  fill: lightgrey; }
+
+.sequenceNumber {
+  fill: white; }
+
+#sequencenumber {
+  fill: lightgrey; }
+
+#crosshead path {
+  fill: lightgrey !important;
+  stroke: lightgrey !important; }
+
+.messageText {
+  fill: lightgrey;
+  stroke: none; }
+
+.labelBox {
+  stroke: #81B1DB;
+  fill: #BDD5EA; }
+
+.labelText {
+  fill: #323D47;
+  stroke: none; }
+
+.loopText {
+  fill: lightgrey;
+  stroke: none; }
+
+.loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  stroke: #81B1DB; }
+
+.note {
+  stroke: rgba(255, 255, 255, 0.25);
+  fill: #fff5ad; }
+
+.noteText {
+  fill: black;
+  stroke: none;
+  
+  font-size: 14px; }
+
+.activation0 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+.activation1 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+.activation2 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+/** Section styling */
+.section {
+  stroke: none;
+  opacity: 0.2; }
+
+.section0 {
+  fill: rgba(255, 255, 255, 0.3); }
+
+.section2 {
+  fill: #EAE8B9; }
+
+.section1,
+.section3 {
+  fill: white;
+  opacity: 0.2; }
+
+.sectionTitle0 {
+  fill: #F9FFFE; }
+
+.sectionTitle1 {
+  fill: #F9FFFE; }
+
+.sectionTitle2 {
+  fill: #F9FFFE; }
+
+.sectionTitle3 {
+  fill: #F9FFFE; }
+
+.sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px;
+   }
+
+/* Grid and axis */
+.grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+.grid path {
+  stroke-width: 0; }
+
+/* Today line */
+.today {
+  fill: none;
+  stroke: #DB5757;
+  stroke-width: 2px; }
+
+/* Task styling */
+/* Default task */
+.task {
+  stroke-width: 2; }
+
+.taskText {
+  text-anchor: middle;
+   }
+
+.taskText:not([font-size]) {
+  font-size: 11px; }
+
+.taskTextOutsideRight {
+  fill: #323D47;
+  text-anchor: start;
+  font-size: 11px;
+   }
+
+.taskTextOutsideLeft {
+  fill: #323D47;
+  text-anchor: end;
+  font-size: 11px; }
+
+/* Special case clickable */
+.task.clickable {
+  cursor: pointer; }
+
+.taskText.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+.taskTextOutsideLeft.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+.taskTextOutsideRight.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+/* Specific task settings for the sections*/
+.taskText0,
+.taskText1,
+.taskText2,
+.taskText3 {
+  fill: #323D47; }
+
+.task0,
+.task1,
+.task2,
+.task3 {
+  fill: #BDD5EA;
+  stroke: rgba(255, 255, 255, 0.5); }
+
+.taskTextOutside0,
+.taskTextOutside2 {
+  fill: lightgrey; }
+
+.taskTextOutside1,
+.taskTextOutside3 {
+  fill: lightgrey; }
+
+/* Active task */
+.active0,
+.active1,
+.active2,
+.active3 {
+  fill: #81B1DB;
+  stroke: rgba(255, 255, 255, 0.5); }
+
+.activeText0,
+.activeText1,
+.activeText2,
+.activeText3 {
+  fill: #323D47 !important; }
+
+/* Completed task */
+.done0,
+.done1,
+.done2,
+.done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+.doneText0,
+.doneText1,
+.doneText2,
+.doneText3 {
+  fill: #323D47 !important; }
+
+/* Tasks on the critical line */
+.crit0,
+.crit1,
+.crit2,
+.crit3 {
+  stroke: #E83737;
+  fill: #E83737;
+  stroke-width: 2; }
+
+.activeCrit0,
+.activeCrit1,
+.activeCrit2,
+.activeCrit3 {
+  stroke: #E83737;
+  fill: #81B1DB;
+  stroke-width: 2; }
+
+.doneCrit0,
+.doneCrit1,
+.doneCrit2,
+.doneCrit3 {
+  stroke: #E83737;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+.milestone {
+  transform: rotate(45deg) scale(0.8, 0.8); }
+
+.milestoneText {
+  font-style: italic; }
+
+.doneCritText0,
+.doneCritText1,
+.doneCritText2,
+.doneCritText3 {
+  fill: #323D47 !important; }
+
+.activeCritText0,
+.activeCritText1,
+.activeCritText2,
+.activeCritText3 {
+  fill: #323D47 !important; }
+
+.titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: #323D47;
+   }
+
+g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  
+  font-size: 10px; }
+  g.classGroup text .title {
+    font-weight: bolder; }
+
+g.classGroup rect {
+  fill: #BDD5EA;
+  stroke: #9370DB; }
+
+g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+.classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #BDD5EA;
+  opacity: 0.5; }
+
+.classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+.relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#aggregationStart {
+  fill: #BDD5EA;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#aggregationEnd {
+  fill: #BDD5EA;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+.commit-id,
+.commit-msg,
+.branch-label {
+  fill: lightgrey;
+  color: lightgrey;
+   }
+
+.pieTitleText {
+  text-anchor: middle;
+  font-size: 25px;
+  fill: #eee;
+}
+
+g.stateGroup text {
+  stroke: none;
+  font-size: 10px;
+}
+
+g.stateGroup circle {
+  fill: white !important;
+  stroke: white !important;
+}
+
+g.stateGroup .state-title {
+  font-weight: bolder;
+  fill: black; }
+
+g.stateGroup rect {
+  fill: #ececff;
+  stroke: #9370DB; }
+
+g.stateGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+.transition {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+.stateGroup .composit {
+  fill: #555;
+  border-bottom: 1px; }
+
+.state-note {
+  stroke: rgba(255, 255, 255, 0.25);
+  fill: #fff5ad; }
+  .state-note text {
+    fill: black;
+    stroke: none;
+    font-size: 10px; }
+
+.stateLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #BDD5EA;
+  opacity: 0.5; }
+
+.stateLabel text {
+  fill: black;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.cluster-label {
+  color:black;
+}
+
+.statediagram-cluster rect {
+  fill: #BDD5EA;
+  stroke: #9370DB; 
+  stroke-width: 1px;
+}
+.statediagram-cluster rect.outer {
+  rx: 5px;
+  ry: 5px;
+}
+.statediagram-state .divider {
+  stroke: #9370DB; 
+}
+
+.statediagram-state .title-state {
+  rx: 5px;
+  ry: 5px;
+}
+.statediagram-cluster.statediagram-cluster .inner {
+  fill: white;
+}
+.statediagram-cluster.statediagram-cluster-alt .inner {
+  fill: #e0e0e0;
+}
+
+.statediagram-cluster .inner {
+  rx:0;
+  ry:0;
+}
+
+.statediagram-state rect.basic {
+  rx: 5px;
+  ry: 5px;
+}
+.statediagram-state rect.divider {
+  stroke-dasharray: 10,10;
+  fill: #efefef;
+}
+
+.note-edge {
+  stroke-dasharray: 5;
+}
+
+.statediagram-note rect {
+  stroke: var(--cluster-border);
+  fill: #fff5ad;
+  stroke-width: 1px;
+  rx: 0;
+  ry: 0;
+}
+
+.node circle.state-start {
+  fill: black;
+  stroke: black;
+}
+.node circle.state-end {
+  fill: black;
+  stroke: white;
+  stroke-width: 1.5
+}
+#statediagram-barbEnd {
+  fill: #9370DB; 
+}
+
+/* CSS Document */
+
+/** code highlight */
+
+.cm-s-inner .cm-variable,
+.cm-s-inner .cm-operator,
+.cm-s-inner .cm-property {
+    color: #b8bfc6;
+}
+
+.cm-s-inner .cm-keyword {
+    color: #C88FD0;
+}
+
+.cm-s-inner .cm-tag {
+    color: #7DF46A;
+}
+
+.cm-s-inner .cm-attribute {
+    color: #7575E4;
+}
+
+.CodeMirror div.CodeMirror-cursor {
+    border-left: 1px solid #b8bfc6;
+    z-index: 3;
+}
+
+.cm-s-inner .cm-string {
+    color: #D26B6B;
+}
+
+.cm-s-inner .cm-comment,
+.cm-s-inner.cm-comment {
+    color: #DA924A;
+}
+
+.cm-s-inner .cm-header,
+.cm-s-inner .cm-def,
+.cm-s-inner.cm-header,
+.cm-s-inner.cm-def {
+    color: #8d8df0;
+}
+
+.cm-s-inner .cm-quote,
+.cm-s-inner.cm-quote {
+    color: #57ac57;
+}
+
+.cm-s-inner .cm-hr {
+    color: #d8d5d5;
+}
+
+.cm-s-inner .cm-link {
+    color: #d3d3ef;
+}
+
+.cm-s-inner .cm-negative {
+    color: #d95050;
+}
+
+.cm-s-inner .cm-positive {
+    color: #50e650;
+}
+
+.cm-s-inner .cm-string-2 {
+    color: #f50;
+}
+
+.cm-s-inner .cm-meta,
+.cm-s-inner .cm-qualifier {
+    color: #b7b3b3;
+}
+
+.cm-s-inner .cm-builtin {
+    color: #f3b3f8;
+}
+
+.cm-s-inner .cm-bracket {
+    color: #997;
+}
+
+.cm-s-inner .cm-atom,
+.cm-s-inner.cm-atom {
+    color: #84B6CB;
+}
+
+.cm-s-inner .cm-number {
+    color: #64AB8F;
+}
+
+.cm-s-inner .cm-variable {
+    color: #b8bfc6;
+}
+
+.cm-s-inner .cm-variable-2 {
+    color: #9FBAD5;
+}
+
+.cm-s-inner .cm-variable-3 {
+    color: #1cc685;
+}
+
+.CodeMirror-selectedtext,
+.CodeMirror-selected {
+    background: #4a89dc;
+    color: #fff !important;
+    text-shadow: none;
+}
+
+.CodeMirror-gutters {
+    border-right: none;
+}
+
+/* CSS Document */
+
+/** markdown source **/
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property
+{
+    color: #cebcca;
+}
+
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor{
+    border-left: 3px solid #b8bfc6;
+}
+
+.cm-s-typora-default .cm-comment {
+    color: #9FB1FF;
+}
+
+.cm-s-typora-default .cm-string {
+    color: #A7A7D9
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+    color: #848695;
+    font-style: italic;
+}
+
+.cm-s-typora-default .cm-link {
+    color: #95B94B;
+}
+
+.cm-s-typora-default .CodeMirror-activeline-background {
+    background: rgba(51, 51, 51, 0.72);
+}
+
+.cm-s-typora-default .cm-comment, .cm-s-typora-default .cm-code {
+	color: #8aa1e1;
+}@import "";
+@import "";
+@import "";
+
+:root {
+    --bg-color:  #363B40;
+    --side-bar-bg-color: #2E3033;
+    --text-color: #b8bfc6;
+
+    --select-text-bg-color:#4a89dc;
+
+    --item-hover-bg-color: #0a0d16;
+    --control-text-color: #b7b7b7;
+    --control-text-hover-color: #eee;
+    --window-border: 1px solid #555;
+
+    --active-file-bg-color: rgb(34, 34, 34);
+    --active-file-border-color: #8d8df0;
+
+    --primary-color: #a3d5fe;
+
+    --active-file-text-color: white;
+    --item-hover-bg-color: #70717d;
+    --item-hover-text-color: white;
+    --primary-color: #6dc1e7;
+
+    --rawblock-edit-panel-bd: #333;
+
+    --search-select-bg-color: #428bca;
+}
+
+html {
+    font-size: 16px;
+}
+
+html,
+body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    background: #363B40;
+    background: var(--bg-color);
+    fill: currentColor;
+    line-height: 1.625rem;
+}
+
+#write {
+    max-width: 914px;
+}
+
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+div.code-tooltip-content {
+    color: #b8bfc6;
+    border-color: transparent;
+}
+
+div.code-tooltip,
+.md-hover-tip .md-arrow:after {
+    background: #333;
+}
+
+.popover.bottom > .arrow:after {
+    border-bottom-color: #333;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+hr {
+    height: 2px;
+    border: 0;
+    margin: 24px 0 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lucida Grande", "Corbel", sans-serif;
+    font-weight: normal;
+    clear: both;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 0;
+    color: #DEDEDE
+}
+
+h1 {
+    font-size: 2.5rem;
+    /* 36px */
+    line-height: 2.75rem;
+    /* 40px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1.5px;
+}
+
+h2 {
+    font-size: 1.63rem;
+    /* 24px */
+    line-height: 1.875rem;
+    /* 30px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.17rem;
+    /* 18px */
+    line-height: 1.5rem;
+    /* 24px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.12rem;
+    /* 16px */
+    line-height: 1.375rem;
+    /* 22px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    color: white;
+}
+
+h5 {
+    font-size: 0.97rem;
+    /* 16px */
+    line-height: 1.25rem;
+    /* 22px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 0.93rem;
+    /* 16px */
+    line-height: 1rem;
+    /* 16px */
+    margin-bottom: 0.75rem;
+    color: white;
+}
+
+@media (min-width: 980px) {
+    h3.md-focus:before,
+    h4.md-focus:before,
+    h5.md-focus:before,
+    h6.md-focus:before {
+        color: #ddd;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        position: absolute;
+        left: -1.642857143rem;
+        top: .357142857rem;
+        float: left;
+        font-size: 9px;
+        padding-left: 2px;
+        padding-right: 2px;
+        vertical-align: bottom;
+        font-weight: normal;
+        line-height: normal;
+    }
+
+    h3.md-focus:before {
+        content: 'h3';
+    }
+
+    h4.md-focus:before {
+        content: 'h4';
+    }
+
+    h5.md-focus:before {
+        content: 'h5';
+        top: 0px;
+    }
+
+    h6.md-focus:before {
+        content: 'h6';
+        top: 0px;
+    }
+}
+
+a {
+    text-decoration: none;
+    outline: 0;
+}
+
+a:hover {
+    outline: 0;
+}
+
+a:focus {
+    outline: thin dotted;
+}
+
+sup.md-footnote {
+    background-color: #555;
+    color: #ddd;
+}
+
+p {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+p,
+ul,
+dd,
+ol,
+hr,
+address,
+pre,
+table,
+iframe,
+.wp-caption,
+.wp-audio-shortcode,
+.wp-video-shortcode {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    /* 24px */
+}
+
+li > blockquote {
+	margin-bottom: 0;
+}
+
+audio:not([controls]) {
+    display: none;
+}
+
+[hidden] {
+    display: none;
+}
+
+::-moz-selection {
+    background: #4a89dc;
+    color: #fff;
+    text-shadow: none;
+}
+
+*.in-text-selection,
+::selection {
+    background: #4a89dc;
+    color: #fff;
+    text-shadow: none;
+}
+
+ul,
+ol {
+    padding: 0 0 0 1.875rem;
+    /* 30px */
+}
+
+ul {
+    list-style: square;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+    margin: 0;
+}
+
+b,
+th,
+dt,
+strong {
+    font-weight: bold;
+}
+
+i,
+em,
+dfn,
+cite {
+    font-style: italic;
+}
+
+blockquote {
+    padding-left: 1.875rem;
+    margin: 0 0 1.875rem 1.875rem;
+    border-left: solid 2px #474d54;
+    padding-left: 30px;
+    margin-top: 35px;
+}
+
+pre,
+code,
+kbd,
+tt,
+var {
+    font-size: 0.875rem;
+    font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+code,
+tt,
+var {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+kbd {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #fff;
+    background-color: #333;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+}
+
+pre.md-fences {
+    padding: 10px 10px 10px 30px;
+    margin-bottom: 20px;
+    background: #333;
+}
+
+.CodeMirror-gutters {
+    background: #333;
+    border-right: 1px solid transparent;
+}
+
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
+    bottom: -2.2em;
+    right: 4px;
+}
+
+code,
+kbd,
+tt,
+var {
+    padding: 2px 5px;
+}
+
+table {
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th,
+td {
+    padding: 5px 10px;
+    vertical-align: top;
+}
+
+a {
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+hr {
+    background: #474d54;
+    /* variable */
+}
+
+h1 {
+    margin-top: 2em;
+}
+
+a {
+    color: #e0e0e0;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #fff;
+}
+
+.md-inline-math script {
+    color: #81b1db;
+}
+
+b,
+th,
+dt,
+strong {
+    color: #DEDEDE;
+    /* variable */
+}
+
+mark {
+    background: #D3D40E;
+}
+
+blockquote {
+    color: #9DA2A6;
+}
+
+table a {
+    color: #DEDEDE;
+    /* variable */
+}
+
+th,
+td {
+    border: solid 1px #474d54;
+    /* variable */
+}
+
+.task-list {
+    padding-left: 0;
+}
+
+.md-task-list-item {
+    padding-left: 1.25rem;
+}
+
+.md-task-list-item > input {
+    top: auto;
+}
+
+.md-task-list-item > input:before {
+    content: "";
+    display: inline-block;
+    width: 0.875rem;
+    height: 0.875rem;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #b8bfc6;
+    background-color: #363B40;
+    margin-top: -0.4rem;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before {
+    content: '\221A';
+    /*◘*/
+    font-size: 0.625rem;
+    line-height: 0.625rem;
+    color: #DEDEDE;
+}
+
+/** quick open **/
+.auto-suggest-container {
+    border: 0px;
+    background-color: #525C65;
+}
+
+#typora-quick-open {
+    background-color: #525C65;
+}
+
+#typora-quick-open input{
+    background-color: #525C65;
+    border: 0;
+    border-bottom: 1px solid grey;
+}
+
+.typora-quick-open-item {
+    background-color: inherit;
+    color: inherit;
+}
+
+.typora-quick-open-item.active,
+.typora-quick-open-item:hover {
+    background-color: #4D8BDB;
+    color: white;
+}
+
+.typora-quick-open-item:hover {
+    background-color: rgba(77, 139, 219, 0.8);
+}
+
+.typora-search-spinner > div {
+  background-color: #fff;
+}
+
+#write pre.md-meta-block {
+    border-bottom: 1px dashed #ccc;
+    background: transparent;
+    padding-bottom: 0.6em;
+    line-height: 1.6em;
+}
+
+.btn,
+.btn .btn-default {
+    background: transparent;
+    color: #b8bfc6;
+}
+
+.ty-table-edit {
+    border-top: 1px solid gray;
+    background-color: #363B40;
+}
+
+.popover-title {
+    background: transparent;
+}
+
+.md-image>.md-meta {
+    color: #BBBBBB;
+    background: transparent;
+}
+
+.md-expand.md-image>.md-meta {
+    color: #DDD;
+}
+
+#write>h3:before,
+#write>h4:before,
+#write>h5:before,
+#write>h6:before {
+    border: none;
+    border-radius: 0px;
+    color: #888;
+    text-decoration: underline;
+    left: -1.4rem;
+    top: 0.2rem;
+}
+
+#write>h3.md-focus:before {
+    top: 2px;
+}
+
+#write>h4.md-focus:before {
+    top: 2px;
+}
+
+.md-toc-item {
+    color: #A8C2DC;
+}
+
+#write div.md-toc-tooltip {
+    background-color: #363B40;
+}
+
+.dropdown-menu .btn:hover,
+.dropdown-menu .btn:focus,
+.md-toc .btn:hover,
+.md-toc .btn:focus {
+    color: white;
+    background: black;
+}
+
+#toc-dropmenu {
+    background: rgba(50, 54, 59, 0.93);
+    border: 1px solid rgba(253, 253, 253, 0.15);
+}
+
+#toc-dropmenu .divider {
+    background-color: #9b9b9b;
+}
+
+.outline-expander:before {
+    top: 2px;
+}
+
+#typora-sidebar {
+    box-shadow: none;
+    border-right: 1px dashed;
+    border-right: none;
+}
+
+.sidebar-tabs {
+    border-bottom:0;
+}
+
+#typora-sidebar:hover .outline-title-wrapper {
+    border-left: 1px dashed;
+}
+
+.outline-title-wrapper .btn {
+    color: inherit;
+}
+
+.outline-item:hover {
+    border-color: #363B40;
+    background-color: #363B40;
+    color: white;
+}
+
+h1.md-focus .md-attr,
+h2.md-focus .md-attr,
+h3.md-focus .md-attr,
+h4.md-focus .md-attr,
+h5.md-focus .md-attr,
+h6.md-focus .md-attr,
+.md-header-span .md-attr {
+    color: #8C8E92;
+    display: inline;
+}
+
+.md-comment {
+    color: #5a95e3;
+    opacity: 1;
+}
+
+.md-inline-math svg {
+    color: #b8bfc6;
+}
+
+#math-inline-preview .md-arrow:after {
+    background: black;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    border: 0;
+}
+
+.modal-title {
+    font-size: 1.5em;
+}
+
+.modal-content input {
+    background-color: rgba(26, 21, 21, 0.51);
+    color: white;
+}
+
+.modal-content .input-group-addon {
+    color: white;
+}
+
+.modal-backdrop {
+    background-color: rgba(174, 174, 174, 0.7);
+}
+
+.modal-content .btn-primary {
+    border-color: var(--primary-color);
+}
+
+.md-table-resize-popover {
+    background-color: #333;
+}
+
+.form-inline .input-group .input-group-addon {
+    color: white;
+}
+
+#md-searchpanel {
+    border-bottom: 1px dashed grey;
+}
+
+/** UI for electron */
+
+.context-menu,
+#spell-check-panel,
+#footer-word-count-info {
+    background-color: #42464A;
+}
+
+.context-menu.dropdown-menu .divider,
+.dropdown-menu .divider {
+    background-color: #777777;
+}
+
+footer {
+    color: inherit;
+}
+
+@media (max-width: 1000px) {
+    footer {
+        border-top: none;
+    }
+    footer:hover {
+        color: inherit;
+    }
+}
+
+#file-info-file-path .file-info-field-value:hover {
+    background-color: #555;
+    color: #dedede;
+}
+
+.megamenu-content,
+.megamenu-opened header {
+    background: var(--bg-color);
+}
+
+.megamenu-menu-panel h2,
+.megamenu-menu-panel h1,
+.long-btn {
+    color: inherit;
+}
+
+.megamenu-menu-panel input[type='text'] {
+    background: inherit;
+    border: 0;
+    border-bottom: 1px solid;
+}
+
+#recent-file-panel-action-btn {
+    background: inherit;
+    border: 1px grey solid;
+}
+
+.megamenu-menu-panel .dropdown-menu > li > a {
+    color: inherit;
+    background-color: #2F353A;
+    text-decoration: none;
+}
+
+.megamenu-menu-panel table td:nth-child(1) {
+    color: inherit;
+    font-weight: bold;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(1) {
+    color: white;
+}
+
+.modal-footer .btn-default, 
+.modal-footer .btn-primary,
+.modal-footer .btn-default:not(:hover) {
+    border: 1px solid;
+    border-color: transparent;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    color: white;
+    border: 1px solid #ddd;
+    background-color: inherit;
+}
+
+.modal-header {
+    border-bottom: 0;
+}
+
+.modal-footer {
+    border-top: 0;
+}
+
+#recent-file-panel tbody tr:nth-child(2n-1) {
+    background-color: transparent !important;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+    border: 1px solid #eee;
+    background: transparent;
+}
+
+.mouse-hover .toolbar-icon.btn:hover,
+#w-full.mouse-hover,
+#w-pin.mouse-hover {
+    background-color: inherit;
+}
+
+.typora-node::-webkit-scrollbar {
+    width: 5px;
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical {
+    background: rgba(250, 250, 250, 0.3);
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(250, 250, 250, 0.5);
+}
+
+#w-unpin {
+    background-color: #4182c4;
+}
+
+#top-titlebar, #top-titlebar * {
+    color: var(--item-hover-text-color);
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+#footer-word-count:hover,
+.ty-show-word-count #footer-word-count {
+    background: #333333;
+}
+
+#toggle-sourceview-btn:hover {
+    color: #eee;
+    background: #333333;
+}
+
+/** focus mode */
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) * {
+    color: #686868 !important;
+}
+
+.on-focus-mode .md-end-block:not(.md-focus) img,
+.on-focus-mode .md-task-list-item:not(.md-focus-container)>input {
+    opacity: #686868 !important;
+}
+
+.on-focus-mode li[cid]:not(.md-focus-container){
+    color: #686868;
+}
+
+.on-focus-mode .md-fences.md-focus .CodeMirror-code>*:not(.CodeMirror-activeline) *,
+.on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) * {
+    color: #686868 !important;
+}
+
+.on-focus-mode .md-focus,
+.on-focus-mode .md-focus-container {
+    color: #fff;
+}
+
+.on-focus-mode #typora-source .CodeMirror-code>*:not(.CodeMirror-activeline) * {
+    color: #686868 !important;
+}
+
+
+/*diagrams*/
+#write .md-focus .md-diagram-panel {
+    border: 1px solid #ddd;
+    margin-left: -1px;
+    width: calc(100% + 2px);
+}
+
+/*diagrams*/
+#write .md-focus.md-fences-with-lineno .md-diagram-panel {
+    margin-left: auto;
+}
+
+.md-diagram-panel-error {
+    color: #f1908e;
+}
+
+.active-tab-files #info-panel-tab-file,
+.active-tab-files #info-panel-tab-file:hover,
+.active-tab-outline #info-panel-tab-outline,
+.active-tab-outline #info-panel-tab-outline:hover {
+    color: #eee;
+}
+
+.sidebar-footer-item:hover,
+.footer-item:hover {
+    background: inherit;
+    color: white;
+}
+
+.ty-side-sort-btn.active,
+.ty-side-sort-btn:hover,
+.selected-folder-menu-item a:after {
+    color: white;
+}
+
+#sidebar-files-menu {
+    border:solid 1px;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.79);
+    background-color: var(--bg-color);
+}
+
+.file-list-item {
+    border-bottom:none;
+}
+
+.file-list-item-summary {
+    opacity: 1;
+}
+
+.file-list-item.active:first-child {
+    border-top: none;
+}
+
+.file-node-background {
+    height: 32px;
+}
+
+.file-library-node.active>.file-node-content,
+.file-list-item.active {
+    color: white;
+    color: var(--active-file-text-color);
+}
+
+.file-library-node.active>.file-node-background{
+    background-color: rgb(34, 34, 34);
+    background-color: var(--active-file-bg-color);
+}
+.file-list-item.active {
+    background-color: rgb(34, 34, 34);
+    background-color: var(--active-file-bg-color);
+}
+
+#ty-tooltip {
+    background-color: black;
+    color: #eee;
+}
+
+.md-task-list-item>input {
+    margin-left: -1.3em;
+    margin-top: 0.3rem;
+    -webkit-appearance: none;
+}
+
+.md-mathjax-midline {
+    background-color: #57616b;
+    border-bottom: none;
+}
+
+footer.ty-footer {
+    border-color: #656565;
+}
+
+.ty-preferences .btn-default {
+    background: transparent;
+}
+.ty-preferences .btn-default:hover {
+    background: #57616b;
+}
+
+.ty-preferences select {
+    border: 1px solid #989698;
+    height: 21px;
+}
+
+.ty-preferences .nav-group-item.active {
+    background: var(--item-hover-bg-color);
+}
+
+.ty-preferences input[type="search"] {
+    border-color: #333;
+    background: #333;
+    line-height: 22px;
+    border-radius: 6px;
+    color: white;
+}
+
+.ty-preferences input[type="search"]:focus {
+    box-shadow: none;
+}
+
+[data-is-directory="true"] .file-node-content {
+    margin-bottom: 0;
+}
+
+.file-node-title {
+    line-height: 22px;
+}
+
+.html-for-mac .file-node-open-state, .html-for-mac .file-node-icon {
+    line-height: 26px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(230, 230, 230, 0.30);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: rgba(230, 230, 230, 0.50);
+}
+
+#typora-sidebar:hover div.sidebar-content-content::-webkit-scrollbar-thumb:horizontal {
+    background: rgba(230, 230, 230, 0.30);
+}
+
+.nav-group-item:active {
+    background-color: #474d54;
+}
+
+.md-search-hit {
+    background: rgba(199, 140, 60, 0.81);
+    color: #eee;
+}
+
+.md-search-hit * {
+    color: #eee;
+}
+
+#md-searchpanel input {
+    color: white;
+}
+
+.export-detail,
+.export-item.active,
+.export-items-list-control {
+    background: #d6d6d4
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="第十七章-标准库特殊设施" class="md-header-anchor"></a><span>第十七章 标准库特殊设施</span></h1><h2><a name="tuple类型" class="md-header-anchor"></a><span>tuple类型</span></h2><ul><li><code>tuple</code><span>是类似</span><code>pair</code><span>的模板，每个成员类型都可以不同，但</span><code>tuple</code><span>可以有任意数量的成员。</span></li><li><span>但每个确定的</span><code>tuple</code><span>类型的成员数目是固定的。</span></li><li><span>我们可以将</span><code>tuple</code><span>看做一个“快速而随意”的数据结构。</span></li></ul><p><strong><span>tuple支持的操作</span></strong><span>：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>tuple&lt;T1, T2, ..., Tn&gt; t;</code></td><td><code>t</code><span>是一个</span><code>tuple</code><span>，成员数为</span><code>n</code><span>，第</span><code>i</code><span>个成员的类型是</span><code>Ti</code><span>所有成员都进行值初始化。</span></td></tr><tr><td><code>tuple&lt;T1, T2, ..., Tn&gt; t(v1, v2, ..., vn);</code></td><td><span>每个成员用对应的初始值</span><code>vi</code><span>进行初始化。此构造函数是</span><code>explicit</code><span>的。</span></td></tr><tr><td><code>make_tuple(v1, v2, ..., vn)</code></td><td><span>返回一个用给定初始值初始化的</span><code>tuple</code><span>。</span><code>tuple</code><span>的类型从初始值的类型</span><strong><span>推断</span></strong><span>。</span></td></tr><tr><td><code>t1 == t2</code></td><td><span>当两个</span><code>tuple</code><span>具有相同数量的成员且成员对应相等时，两个</span><code>tuple</code><span>相等。</span></td></tr><tr><td><code>t1 relop t2</code></td><td><code>tuple</code><span>的关系运算使用</span><strong><span>字典序</span></strong><span>。两个</span><code>tuple</code><span>必须具有相同数量的成员。</span></td></tr><tr><td><code>get&lt;i&gt;(t)</code></td><td><span>返回</span><code>t</code><span>的第</span><code>i</code><span>个数据成员的引用：如果</span><code>t</code><span>是一个左值，结果是一个左值引用；否则，结果是一个右值引用。</span><code>tuple</code><span>的所有成员都是</span><code>public</code><span>的。</span></td></tr><tr><td><code>tuple_size&lt;tupleType&gt;::value</code></td><td><span>一个类模板，可以通过一个</span><code>tuple</code><span>类型来初始化。它有一个名为</span><code>value</code><span>的</span><code>public constexpr static</code><span>数据成员，类型为</span><code>size_t</code><span>，表示给定</span><code>tuple</code><span>类型中成员的数量。</span></td></tr><tr><td><code>tuple_element&lt;i, tupleType&gt;::type</code></td><td><span>一个类模板，可以通过一个整型常量和一个</span><code>tuple</code><span>类型来初始化。它有一个名为</span><code>type</code><span>的</span><code>public</code><span>成员，表示给定</span><code>tuple</code><span>类型中指定成员的类型。</span></td></tr></tbody></table></figure><h3><a name="定义和初始化tuple" class="md-header-anchor"></a><span>定义和初始化tuple</span></h3><p><span>定义和初始化示例：</span></p><ul><li><code>tuple&lt;size_t, size_t, size_t&gt; threeD;</code></li><li><code>tuple&lt;size_t, size_t, size_t&gt; threeD{1,2,3};</code></li><li><code>auto item = make_tuple(&quot;0-999-78345-X&quot;, 3, 2.00)；</code></li></ul><p><span>访问tuple成员：</span></p><ul><li><code>auto book = get&lt;0&gt;(item);</code></li><li><code>get&lt;2&gt;(item) *= 0.8;</code></li></ul><h3><a name="使用tuple返回多个值" class="md-header-anchor"></a><span>使用tuple返回多个值</span></h3><ul><li><code>tuple</code><span>最常见的用途是从一个函数返回多个值。</span></li></ul><h2><a name="bitset类型" class="md-header-anchor"></a><span>bitset类型</span></h2><ul><li><span>处理二进制位的有序集；</span></li><li><code>bitset</code><span>也是类模板，但尖括号中输入的是</span><code>bitset</code><span>的长度而不是元素类型，因为元素类型是固定的，都是一个二进制位。</span></li></ul><p><span>初始化</span><code>bitset</code><span>的方法：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>bitset&lt;n&gt; b;</code></td><td><code>b</code><span>有</span><code>n</code><span>位；每一位均是0.此构造函数是一个</span><code>constexpr</code><span>。</span></td></tr><tr><td><code>bitset&lt;n&gt; b(u);</code></td><td><code>b</code><span>是</span><code>unsigned long long</code><span>值</span><code>u</code><span>的低</span><code>n</code><span>位的拷贝。如果</span><code>n</code><span>大于</span><code>unsigned long long</code><span>的大小，则</span><code>b</code><span>中超出</span><code>unsigned long long</code><span>的高位被置为0。此构造函数是一个</span><code>constexpr</code><span>。</span></td></tr><tr><td><code>bitset&lt;n&gt; b(s, pos, m, zero, one);</code></td><td><code>b</code><span>是</span><code>string s</code><span>从位置</span><code>pos</code><span>开始</span><code>m</code><span>个字符的拷贝。</span><code>s</code><span>只能包含字符</span><code>zero</code><span>或</span><code>one</code><span>：如果</span><code>s</code><span>包含任何其他字符，构造函数会抛出</span><code>invalid_argument</code><span>异常。字符在</span><code>b</code><span>中分别保存为</span><code>zero</code><span>和</span><code>one</code><span>。</span><code>pos</code><span>默认为0，</span><code>m</code><span>默认为</span><code>string::npos</code><span>，</span><code>zero</code><span>默认为&#39;0&#39;，</span><code>one</code><span>默认为&#39;1&#39;。</span></td></tr><tr><td><code>bitset&lt;n&gt; b(cp, pos, m, zero, one);</code></td><td><span>和上一个构造函数相同，但从</span><code>cp</code><span>指向的字符数组中拷贝字符。如果未提供</span><code>m</code><span>，则</span><code>cp</code><span>必须指向一个</span><code>C</code><span>风格字符串。如果提供了</span><code>m</code><span>，则从</span><code>cp</code><span>开始必须至少有</span><code>m</code><span>个</span><code>zero</code><span>或</span><code>one</code><span>字符。</span></td></tr></tbody></table></figure><p><span>初始化案例；</span></p><ul><li><code>bitset&lt;13&gt; bitvec1(0xbeef);</code></li><li><code>bitset&lt;32&gt; bitvec4(&quot;1100&quot;);</code></li></ul><p><code>bitset</code><span>操作：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>b.any()</code></td><td><code>b</code><span>中是否存在1。</span></td></tr><tr><td><code>b.all()</code></td><td><code>b</code><span>中都是1。</span></td></tr><tr><td><code>b.none()</code></td><td><code>b</code><span>中是否没有1。</span></td></tr><tr><td><code>b.count()</code></td><td><code>b</code><span>中1的个数。</span></td></tr><tr><td><code>b.size()</code></td><td>&nbsp;</td></tr><tr><td><code>b.test(pos)</code></td><td><code>pos</code><span>下标是否是1</span></td></tr><tr><td><code>b.set(pos)</code></td><td><code>pos</code><span>置1</span></td></tr><tr><td><code>b.set()</code></td><td><span>所有都置1</span></td></tr><tr><td><code>b.reset(pos)</code></td><td><span>将位置</span><code>pos</code><span>处的位复位</span></td></tr><tr><td><code>b.reset()</code></td><td><span>将</span><code>b</code><span>中所有位复位</span></td></tr><tr><td><code>b.flip(pos)</code></td><td><span>将位置</span><code>pos</code><span>处的位取反</span></td></tr><tr><td><code>b.flip()</code></td><td><span>将</span><code>b</code><span>中所有位取反</span></td></tr><tr><td><code>b[pos]</code></td><td><span>访问</span><code>b</code><span>中位置</span><code>pos</code><span>处的位；如果</span><code>b</code><span>是</span><code>const</code><span>的，则当该位置位时，返回</span><code>true</code><span>；否则返回</span><code>false</code><span>。</span></td></tr><tr><td><code>b.to_ulong()</code></td><td><span>返回一个</span><code>unsigned long</code><span>值，其位模式和</span><code>b</code><span>相同。如果</span><code>b</code><span>中位模式不能放入指定的结果类型，则抛出一个</span><code>overflow_error</code><span>异常。</span></td></tr><tr><td><code>b.to_ullong()</code></td><td><span>类似上面，返回一个</span><code>unsigned long long</code><span>值。</span></td></tr><tr><td><code>b.to_string(zero, one)</code></td><td><span>返回一个</span><code>string</code><span>，表示</span><code>b</code><span>中位模式。</span><code>zero</code><span>和</span><code>one</code><span>默认为0和1。</span></td></tr><tr><td><code>os &lt;&lt; b</code></td><td><span>将</span><code>b</code><span>中二进制位打印为字符</span><code>1</code><span>或</span><code>0</code><span>，打印到流</span><code>os</code><span>。</span></td></tr><tr><td><code>is &gt;&gt; b</code></td><td><span>从</span><code>is</code><span>读取字符存入</span><code>b</code><span>。当下一个字符不是1或0时，或是已经读入</span><code>b.size()</code><span>个位时，读取过程停止。</span></td></tr></tbody></table></figure><h2><a name="正则表达式" class="md-header-anchor"></a><span>正则表达式</span></h2><ul><li><span>正则表达式（reqular expression）是一种描述字符序列的方法，是一种很强大的工具。</span></li></ul><p><span>正则表达式库组件：</span></p><figure><table><thead><tr><th><span>组件</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>regex</code></td><td><span>表示一个正则表达式的类</span></td></tr><tr><td><code>regex_match</code></td><td><span>将一个字符序列与一个正则表达式匹配</span></td></tr><tr><td><code>regex_search</code></td><td><span>寻找第一个与正则表达式匹配的子序列</span></td></tr><tr><td><code>regex_replace</code></td><td><span>使用给定格式替换一个正则表达式</span></td></tr><tr><td><code>sregex_iterator</code></td><td><span>迭代器适配器，调用</span><code>regex_searcg</code><span>来遍历一个</span><code>string</code><span>中所有匹配的子串</span></td></tr><tr><td><code>smatch</code></td><td><span>容器类，保存在</span><code>string</code><span>中搜索的结果</span></td></tr><tr><td><code>ssub_match</code></td><td><code>string</code><span>中匹配的子表达式的结果</span></td></tr></tbody></table></figure><p><code>regex_match</code><span>和</span><code>regex_search</code><span>的参数：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>(seq, m, r, mft)</code></td><td><span>在字符序列</span><code>seq</code><span>中查找</span><code>regex</code><span>对象</span><code>r</code><span>中的正则表达式。</span><code>seq</code><span>可以是一个</span><code>string</code><span>、标识范围的一对迭代器、一个指向空字符结尾的字符数组的指针。</span></td></tr><tr><td><code>(seq, r, mft)</code></td><td><code>m</code><span>是一个</span><code>match</code><span>对象，用来保存匹配结果的相关细节。</span><code>m</code><span>和</span><code>seq</code><span>必须具有兼容的类型。</span><code>mft</code><span>是一个可选的</span><code>regex_constants::match_flag_type</code><span>值。</span></td></tr></tbody></table></figure><ul><li><span>这些操作会返回</span><code>bool</code><span>值，指出是否找到匹配。</span></li></ul><h3><a name="使用正则表达式库" class="md-header-anchor"></a><span>使用正则表达式库</span></h3><ul><li><p><code>regex</code><span>使用的正则表达式语言是</span><code>ECMAScript</code><span>，模式</span><code>[[::alpha::]]</code><span>匹配任意字母。</span></p></li><li><p><span>由于反斜线是C++中的特殊字符，在模式中每次出现</span><code>\</code><span>的地方，必须用一个额外的反斜线</span><code>\\</code><span>告知C++我们需要一个反斜线字符。</span></p></li><li><p><span>简单案例：</span></p><ul><li><code>string pattern(&quot;[^c]ei&quot;); pattern = &quot;[[:alpha:]]*&quot; + pattern + &quot;[[:alpha:]]*&quot;</code><span> 查找不在字符c之后的字符串ei</span></li><li><code>regex r(pattern);</code><span> 构造一个用于查找模式的regex</span></li><li><code>smatch results;</code><span> 定义一个对象保存搜索结果</span></li><li><code>string test_str = &quot;receipt freind theif receive&quot;;</code></li><li><code>if (regex_search(test_str, results, r)) cout &lt;&lt; results.str() &lt;&lt; endl;</code><span> 如有匹配子串，打印匹配的单词。</span></li></ul></li></ul><p><code>regex</code><span>（和</span><code>wregex</code><span>）选项：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>regex r(re)</code><span> </span><code>regex r(re, f)</code></td><td><code>re</code><span>表示一个正则表达式，它可以是一个</span><code>string</code><span>、一对表示字符范围的迭代器、一个指向空字符结尾的字符数组的指针、一个字符指针和一个计数器、一个花括号包围的字符列表。</span><code>f</code><span>是指出对象如何处理的标志。</span><code>f</code><span>通过下面列出来的值来设置。如果未指定</span><code>f</code><span>，其默认值为</span><code>ECMAScript</code><span>。</span></td></tr><tr><td><code>r1 = re</code></td><td><span>将</span><code>r1</code><span>中的正则表达式替换Wie</span><code>re</code><span>。</span><code>re</code><span>表示一个正则表达式，它可以是另一个</span><code>regex</code><span>对象、一个</span><code>string</code><span>、一个指向空字符结尾的字符数组的指针或是一个花括号包围的字符列表。</span></td></tr><tr><td><code>r1.assign(re, f)</code></td><td><span>和使用赋值运算符（=）的效果相同：可选的标志</span><code>f</code><span>也和</span><code>regex</code><span>的构造函数中对应的参数含义相同。</span></td></tr><tr><td><code>r.mark_count()</code></td><td><code>r</code><span>中子表达式的数目</span></td></tr><tr><td><code>r.flags()</code></td><td><span>返回</span><code>r</code><span>的标志集</span></td></tr></tbody></table></figure><p><span>定义</span><code>regex</code><span>时指定的标志：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>icase</code></td><td><span>在匹配过程中忽略大小写</span></td></tr><tr><td><code>nosubs</code></td><td><span>不保存匹配的子表达式</span></td></tr><tr><td><code>optimize</code></td><td><span>执行速度优先于构造速度</span></td></tr><tr><td><code>ECMAScript</code></td><td><span>使用</span><code>ECMA-262</code><span>指定的语法</span></td></tr><tr><td><code>basic</code></td><td><span>使用</span><code>POSIX</code><span>基本的正则表达式语法</span></td></tr><tr><td><code>extended</code></td><td><span>使用</span><code>POSIX</code><span>扩展的正则表达式语法</span></td></tr><tr><td><code>awk</code></td><td><span>使用</span><code>POSIX</code><span>版本的</span><code>awk</code><span>语言的语法</span></td></tr><tr><td><code>grep</code></td><td><span>使用</span><code>POSIX</code><span>版本的</span><code>grep</code><span>的语法</span></td></tr><tr><td><code>egrep</code></td><td><span>使用</span><code>POSIX</code><span>版本的</span><code>egrep</code><span>的语法</span></td></tr></tbody></table></figure><ul><li><span>可以将正则表达式本身看做是一种简单程序语言设计的程序。在运行时，当一个</span><code>regex</code><span>对象被初始化或被赋予新模式时，才被“编译”。</span></li><li><span>如果编写的正则表达式存在错误，会在运行时抛出一个</span><code>regex_error</code><span>的异常。</span></li><li><span>避免创建不必要的正则表达式。构建一个</span><code>regex</code><span>对象可能比较耗时。</span></li></ul><h3><a name="匹配与regex迭代器类型" class="md-header-anchor"></a><span>匹配与regex迭代器类型</span></h3><p><code>sregex_iterator</code><span>操作（用来获得所有匹配）：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>sregex_iterator it(b, e, r);</code></td><td><span>一个</span><code>sregex_iterator</code><span>，遍历迭代器</span><code>b</code><span>和</span><code>e</code><span>表示的</span><code>string</code><span>。它调用</span><code>sregex_search(b, e, r)</code><span>将</span><code>it</code><span>定位到输入中第一个匹配的位置。</span></td></tr><tr><td><code>sregex_iterator end;</code></td><td><code>sregex_iterator</code><span>的尾后迭代器</span></td></tr><tr><td><code>*it</code><span>， </span><code>it-&gt;</code></td><td><span>根据最后一个调用</span><code>regex_search</code><span>的结果，返回一个</span><code>smatch</code><span>对象的引用或一个指向</span><code>smatch</code><span>对象的指针。</span></td></tr><tr><td><code>++it</code><span> ， </span><code>it++</code></td><td><span>从输入序列当前匹配位置开始调用</span><code>regex_search</code><span>。前置版本返回递增后迭代器；后置版本返回旧值。</span></td></tr><tr><td><code>it1 == it2</code></td><td><span>如果两个</span><code>sregex_iterator</code><span>都是尾后迭代器，则它们相等。两个非尾后迭代器是从相同的输入序列和</span><code>regex</code><span>对象构造，则它们相等。</span></td></tr></tbody></table></figure><p><span>示例：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="cpp"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="cpp"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 将字符串file中所有匹配模式r的子串输出</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">for</span> (<span class="cm-variable">sregex_iterator</span> <span class="cm-def">it</span>(<span class="cm-variable">file</span>.<span class="cm-variable">begin</span>(), <span class="cm-variable">file</span>.<span class="cm-variable">end</span>(), <span class="cm-variable">r</span>), <span class="cm-variable">end_it</span>; <span class="cm-variable">it</span> <span class="cm-operator">!=</span> <span class="cm-variable">end_it</span>; <span class="cm-operator">++</span><span class="cm-variable">it</span>){</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">it</span> <span class="cm-operator">-&gt;</span><span class="cm-variable">str</span>() <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 104px;"></div><div class="CodeMirror-gutters" style="display: none; height: 104px;"></div></div></div></pre><p><code>smatch</code><span>操作：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>m.ready()</code></td><td><span>如果已经通过调用</span><code>regex_search</code><span>或</span><code>regex_match</code><span>设置了</span><code>m</code><span>，则返回</span><code>true</code><span>；否则返回</span><code>false</code><span>。如果</span><code>ready</code><span>返回</span><code>false</code><span>，则对</span><code>m</code><span>进行操作是未定义的。</span></td></tr><tr><td><code>m.size()</code></td><td><span>如果匹配失败，则返回0，；否则返回最近一次匹配的正则表达式中子表达式的数目。</span></td></tr><tr><td><code>m.empty()</code></td><td><span>等价于</span><code>m.size() == 0</code></td></tr><tr><td><code>m.prefix()</code></td><td><span>一个</span><code>ssub_match</code><span>对象，标识当前匹配之前的序列</span></td></tr><tr><td><code>m.suffix()</code></td><td><span>一个</span><code>ssub_match</code><span>对象，标识当前匹配之后的部分</span></td></tr><tr><td><code>m.format(...)</code></td><td>&nbsp;</td></tr><tr><td><code>m.length(n)</code></td><td><span>第</span><code>n</code><span>个匹配的子表达式的大小</span></td></tr><tr><td><code>m.position(n)</code></td><td><span>第</span><code>n</code><span>个子表达式距离序列开始的长度</span></td></tr><tr><td><code>m.str(n)</code></td><td><span>第</span><code>n</code><span>个子表达式匹配的</span><code>string</code></td></tr><tr><td><code>m[n]</code></td><td><span>对应第</span><code>n</code><span>个子表达式的</span><code>ssub_match</code><span>对象</span></td></tr><tr><td><code>m.begin(), m.end()</code></td><td><span>表示</span><code>m</code><span>中</span><code>ssub_match</code><span>元素范围的迭代器。</span></td></tr><tr><td><code>m.cbegin(), m.cend()</code></td><td><span>常量迭代器</span></td></tr></tbody></table></figure><h3><a name="使用子表达式" class="md-header-anchor"></a><span>使用子表达式</span></h3><ul><li><span>正则表达式语法通常用括号表示子表达式。</span></li><li><span>子表达式的索引从1开始。</span></li><li><span>在</span><code>fmt</code><span>中用</span><code>$</code><span>后跟子表达式的索引号来标识一个特定的子表达式。</span></li></ul><p><span>示例：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="cpp"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="cpp"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">if</span> (<span class="cm-variable">regex_search</span>(<span class="cm-variable">filename</span>, <span class="cm-variable">results</span>, <span class="cm-variable">r</span>))</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">results</span>.<span class="cm-variable">str</span>(<span class="cm-number">1</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>; &nbsp;<span class="cm-comment">// .str(1)获取第一个子表达式匹配结果</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 52px;"></div><div class="CodeMirror-gutters" style="display: none; height: 52px;"></div></div></div></pre><p><code>ssub_match</code><span>子匹配操作：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>matched</code></td><td><span>一个</span><code>public bool</code><span>数据成员，指出</span><code>ssub_match</code><span>是否匹配了</span></td></tr><tr><td><code>first</code><span>， </span><code>second</code></td><td><code>public</code><span>数据成员，指向匹配序列首元素和尾后位置的迭代器。如果未匹配，则</span><code>first</code><span>和</span><code>second</code><span>是相等的。</span></td></tr><tr><td><code>length()</code></td><td><span>匹配的大小，如果</span><code>matched</code><span>为</span><code>false</code><span>，则返回0。</span></td></tr><tr><td><code>str()</code></td><td><span>返回一个包含输入中匹配部分的</span><code>string</code><span>。如果</span><code>matched</code><span>为</span><code>false</code><span>，则返回空</span><code>string</code><span>。</span></td></tr><tr><td><code>s = ssub</code></td><td><span>将</span><code>ssub_match</code><span>对象</span><code>ssub</code><span>转化为</span><code>string</code><span>对象</span><code>s</code><span>。等价于</span><code>s=ssub.str()</code><span>，转换运算符不是</span><code>explicit</code><span>的。</span></td></tr></tbody></table></figure><h3><a name="使用regexreplace" class="md-header-anchor"></a><span>使用regex_replace</span></h3><p><span>正则表达式替换操作：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>m.format(dest, fmt, mft)</code><span>, </span><code>m.format(fmt, mft)</code></td><td><span>使用格式字符串</span><code>fmt</code><span>生成格式化输出，匹配在</span><code>m</code><span>中，可选的</span><code>match_flag_type</code><span>标志在</span><code>mft</code><span>中。第一个版本写入迭代器</span><code>dest</code><span>指向的目的为止，并接受</span><code>fmt</code><span>参数，可以是一个</span><code>string</code><span>，也可以是一个指向空字符结尾的字符数组的指针。</span><code>mft</code><span>的默认值是</span><code>format_default</code><span>。</span></td></tr><tr><td><code>rege_replace(dest, seq, r, fmt, mft)</code><span>，  </span><code>regex_replace(seq, r, fmt, mft)</code></td><td><span>遍历</span><code>seq</code><span>，用</span><code>regex_search</code><span>查找与</span><code>regex</code><span>对象</span><code>r</code><span>相匹配的子串，使用格式字符串</span><code>fmt</code><span>和可选的</span><code>match_flag_type</code><span>标志来生成输出。</span><code>mft</code><span>的默认值是</span><code>match_default</code></td></tr></tbody></table></figure><p><span>示例：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="cpp"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="cpp"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">string</span> <span class="cm-variable">phone</span> <span class="cm-operator">=</span> <span class="cm-string">"(\\()?(\\d{3})(\\))?([-. ])?(\\d{3})([-. ]?)(\\d{4})"</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">string</span> <span class="cm-variable">fmt</span> <span class="cm-operator">=</span> <span class="cm-string">"$2.$5.$7"</span>; &nbsp;<span class="cm-comment">// 将号码格式改为ddd.ddd.dddd</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">regex</span> <span class="cm-def">r</span>(<span class="cm-variable">phone</span>); &nbsp;<span class="cm-comment">// 用来寻找模式的regex对象</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">string</span> <span class="cm-variable">number</span> <span class="cm-operator">=</span> <span class="cm-string">"(908) 555-1800"</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">regex_replace</span>(<span class="cm-variable">number</span>, <span class="cm-variable">r</span>, <span class="cm-variable">fmt</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 130px;"></div><div class="CodeMirror-gutters" style="display: none; height: 130px;"></div></div></div></pre><p><span>匹配标志：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>match_default</code></td><td><span>等价于</span><code>format_default</code></td></tr><tr><td><code>match_not_bol</code></td><td><span>不将首字符作为行首处理</span></td></tr><tr><td><code>match_not_eol</code></td><td><span>不将尾字符作为行尾处理</span></td></tr><tr><td><code>match_not_bow</code></td><td><span>不将首字符作为单词首处理</span></td></tr><tr><td><code>match_not_eow</code></td><td><span>不将尾字符作为单词尾处理</span></td></tr><tr><td><code>match_any</code></td><td><span>如果存在多于一个匹配，则可以返回任意一个匹配</span></td></tr><tr><td><code>match_not_null</code></td><td><span>不匹配任何空序列</span></td></tr><tr><td><code>match_continuous</code></td><td><span>匹配必须从输入的首字符开始</span></td></tr><tr><td><code>match_prev_avail</code></td><td><span>输入序列包含第一个匹配之前的内容</span></td></tr><tr><td><code>format_default</code></td><td><span>用</span><code>ECMAScript</code><span>规则替换字符串</span></td></tr><tr><td><code>format_sed</code></td><td><span>用</span><code>POSIX sed</code><span>规则替换字符串</span></td></tr><tr><td><code>format_no_copy</code></td><td><span>不输出输入序列中未匹配的部分</span></td></tr><tr><td><code>format_first_only</code></td><td><span>只替换子表达式的第一次出现</span></td></tr></tbody></table></figure><h2><a name="随机数" class="md-header-anchor"></a><span>随机数</span></h2><ul><li><span>新标准之前，C和C++都依赖一个简单的C库函数</span><code>rand</code><span>来生成随机数，且只符合均匀分布。</span></li><li><span>新标准：</span><strong><span>随机数引擎</span></strong><span> + </span><strong><span>随机数分布类</span></strong><span>， 定义在   </span><code>random</code><span>头文件中。</span></li><li><span>C++程序应该使用</span><code>default_random_engine</code><span>类和恰当的分布类对象。</span></li></ul><h3><a name="随机数引擎和分布" class="md-header-anchor"></a><span>随机数引擎和分布</span></h3><p><span>随机数引擎操作</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>Engine e;</code></td><td><span>默认构造函数；使用该引擎类型默认的种子</span></td></tr><tr><td><code>Engine e(s);</code></td><td><span>使用整型值</span><code>s</code><span>作为种子</span></td></tr><tr><td><code>e.seed(s)</code></td><td><span>使用种子</span><code>s</code><span>重置引擎的状态</span></td></tr><tr><td><code>e.min()</code><span>，</span><code>e.max()</code></td><td><span>此引擎可生成的最小值和最大值</span></td></tr><tr><td><code>Engine::result_type</code></td><td><span>此引擎生成的</span><code>unsigned</code><span>整型类型</span></td></tr><tr><td><code>e.discard(u)</code></td><td><span>将引擎推进</span><code>u</code><span>步；</span><code>u</code><span>的类型为</span><code>unsigned long long</code></td></tr></tbody></table></figure><p><span>示例：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="cpp"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="cpp"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 初始化分布类型</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">uniform_int_distribution</span><span class="cm-operator">&lt;</span><span class="cm-variable-3">unsigned</span><span class="cm-operator">&gt;</span> <span class="cm-def">u</span>(<span class="cm-number">0</span>, <span class="cm-number">9</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 初始化引擎</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">default_random_engine</span> <span class="cm-variable">e</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 随机生成0-9的无符号整数</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">u</span>(<span class="cm-variable">e</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 156px;"></div><div class="CodeMirror-gutters" style="display: none; height: 156px;"></div></div></div></pre><p><strong><span>设置随机数发生器种子</span></strong><span>：</span></p><ul><li><span>种子就是一个数值，引擎可以利用它从序列中一个新位置重新开始生成随机数。</span></li><li><span>种子可以使用系统函数</span><code>time(0)</code><span>。</span></li></ul><h3><a name="其他随机数分布" class="md-header-anchor"></a><span>其他随机数分布</span></h3><p><span>分布类型的操作：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>Dist d;</code></td><td><span>默认够赞函数；使</span><code>d</code><span>准备好被使用。其他构造函数依赖于</span><code>Dist</code><span>的类型；分布类型的构造函数是</span><code>explicit</code><span>的。</span></td></tr><tr><td><code>d(e)</code></td><td><span>用相同的</span><code>e</code><span>连续调用</span><code>d</code><span>的话，会根据</span><code>d</code><span>的分布式类型生成一个随机数序列；</span><code>e</code><span>是一个随机数引擎对象。</span></td></tr><tr><td><code>d.min()</code><span>,</span><code>d.max()</code></td><td><span>返回</span><code>d(e)</code><span>能生成的最小值和最大值。</span></td></tr><tr><td><code>d.reset()</code></td><td><span>重建</span><code>d</code><span>的状态，是的随后对</span><code>d</code><span>的使用不依赖于</span><code>d</code><span>已经生成的值。</span></td></tr></tbody></table></figure><h2><a name="io库再探" class="md-header-anchor"></a><span>IO库再探</span></h2><h3><a name="格式化输入与输出" class="md-header-anchor"></a><span>格式化输入与输出</span></h3><ul><li><span>使用操纵符改变格式状态。</span></li><li><span>控制布尔值的格式： </span><code>cout &lt;&lt; boolalpha &lt;&lt; true &lt;&lt; endl;</code></li><li><span>指定整型的进制：</span><code>cout &lt;&lt; dec &lt;&lt; 20 &lt;&lt; endl;</code></li></ul><p><span>定义在</span><code>iostream</code><span>中的操纵符：</span></p><figure><table><thead><tr><th><span>操纵符</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>boolalpha</code></td><td><span>将</span><code>true</code><span>和</span><code>false</code><span>输出为字符串</span></td></tr><tr><td><code>* noboolalpha</code></td><td><span>将</span><code>true</code><span>和</span><code>false</code><span>输出为1,0</span></td></tr><tr><td><code>showbase</code></td><td><span>对整型值输出表示进制的前缀</span></td></tr><tr><td><code>* noshowbase</code></td><td><span>不生成表示进制的前缀</span></td></tr><tr><td><code>showpoint</code></td><td><span>对浮点值总是显示小数点</span></td></tr><tr><td><code>* noshowpoint</code></td><td><span>只有当浮点值包含小数部分时才显示小数点</span></td></tr><tr><td><code>showpos</code></td><td><span>对非负数显示</span><code>+</code></td></tr><tr><td><code>* noshowpos</code></td><td><span>对非负数不显示</span><code>+</code></td></tr><tr><td><code>uppercase</code></td><td><span>在十六进制中打印</span><code>0X</code><span>，在科学计数法中打印</span><code>E</code></td></tr><tr><td><code>* nouppercase</code></td><td><span>在十六进制中打印</span><code>0x</code><span>，在科学计数法中打印</span><code>e</code></td></tr><tr><td><code>* dec</code></td><td><span>整型值显示为十进制</span></td></tr><tr><td><code>hex</code></td><td><span>整型值显示为十六进制</span></td></tr><tr><td><code>oct</code></td><td><span>整型值显示为八进制</span></td></tr><tr><td><code>left</code></td><td><span>在值的右侧添加填充字符</span></td></tr><tr><td><code>right</code></td><td><span>在值的左侧添加填充字符</span></td></tr><tr><td><code>internal</code></td><td><span>在符号和值之间添加填充字符</span></td></tr><tr><td><code>fixed</code></td><td><span>浮点值显示为定点十进制</span></td></tr><tr><td><code>scientific</code></td><td><span>浮点值显示为科学计数法</span></td></tr><tr><td><code>hexfloat</code></td><td><span>浮点值显示为十六进制（C++11）</span></td></tr><tr><td><code>defaultfloat</code></td><td><span>充值浮点数格式为十进制（C++11）</span></td></tr><tr><td><code>unitbuf</code></td><td><span>每次输出操作后都刷新缓冲区</span></td></tr></tbody></table></figure><p><span>1| </span><code>* nounitbuf</code><span> | 恢复正常的缓冲区刷新模式 |</span>
+<span>| </span><code>* skipws</code><span> | 输入运算符跳过空白符 |</span>
+<span>| </span><code>noskipws</code><span> | 输入运算符不跳过空白符 |</span>
+<span>| </span><code>flush</code><span> | 刷新</span><code>ostream</code><span>缓冲区 |</span>
+<span>| </span><code>ends</code><span> | 插入空字符，然后刷新</span><code>ostream</code><span>缓冲区 |</span>
+<span>| </span><code>endl</code><span> | 插入换行，然后刷新</span><code>ostream</code><span>缓冲区 |</span></p><p><span>其中</span><code>*</code><span>表示默认的流状态。</span></p><h3><a name="未格式化的输入输出操作" class="md-header-anchor"></a><span>未格式化的输入/输出操作</span></h3><p><span>单字节低层IO操作：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>is.get(ch)</code></td><td><span>从</span><code>istream is</code><span>读取下一个字节存入字符</span><code>cn</code><span>中。返回</span><code>is</code><span>。</span></td></tr><tr><td><code>os.put(ch)</code></td><td><span>将字符</span><code>ch</code><span>输出到</span><code>ostream os</code><span>。返回</span><code>os</code><span>。</span></td></tr><tr><td><code>is.get()</code></td><td><span>将</span><code>is</code><span>的下一个字节作为</span><code>int</code><span>返回</span></td></tr><tr><td><code>is.putback(ch)</code></td><td><span>将字符</span><code>ch</code><span>放回</span><code>is</code><span>。返回</span><code>is</code><span>。</span></td></tr><tr><td><code>is.unget()</code></td><td><span>将</span><code>is</code><span>向后移动一个字节。返回</span><code>is</code><span>。</span></td></tr><tr><td><code>is.peek()</code></td><td><span>将下一个字节作为</span><code>int</code><span>返回，但不从流中删除它。</span></td></tr></tbody></table></figure><p><span>多字节低层IO操作：</span></p><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>is.get(sink, size, delim)</code></td><td><span>从</span><code>is</code><span>中读取最多</span><code>size</code><span>个字节，并保存在字符数组中，字符数组的起始地址由</span><code>sink</code><span>给出。读取过程直到遇到字符</span><code>delim</code><span>或读取了</span><code>size</code><span>个字节或遇到文件尾时停止。如果遇到了</span><code>delim</code><span>，则将其留在输入流中，不读取出来存入</span><code>sink</code><span>。</span></td></tr><tr><td><code>is.getline(sink, size, delim)</code></td><td><span>与接收三个参数的</span><code>get</code><span>版本类似，但会读取并丢弃</span><code>delim</code><span>。</span></td></tr><tr><td><code>is.read(sink, size)</code></td><td><span>读取最多</span><code>size</code><span>个字节，存入字符数组</span><code>sink</code><span>中。返回</span><code>is</code><span>。</span></td></tr><tr><td><code>is.gcount()</code></td><td><span>返回上一个未格式化读取从</span><code>is</code><span>读取的字节数</span></td></tr><tr><td><code>os.write(source, size)</code></td><td><span>将字符数组</span><code>source</code><span>中的</span><code>size</code><span>个字节写入</span><code>os</code><span>。返回</span><code>os</code><span>。</span></td></tr><tr><td><code>is.ignore(size, delim)</code></td><td><span>读取并忽略最多</span><code>size</code><span>个字符，包括</span><code>delim</code><span>。与其他未格式化函数不同，</span><code>ignore</code><span>有默认参数：</span><code>size</code><span>默认值是1，</span><code>delim</code><span>的默认值为文件尾。</span></td></tr></tbody></table></figure><ul><li><span>注意：一般情况下，主张使用标准库提供的高层抽象，低层函数容易出错。</span></li></ul><h3><a name="流随机访问" class="md-header-anchor"></a><span>流随机访问</span></h3><ul><li><span>只适用于</span><code>fstream</code><span>和</span><code>sstream</code><span>。</span></li><li><span>通过将标记</span><code>seek</code><span>到一个给定位置来重定位它。</span></li><li><code>tell</code><span>告诉我们标记的当前位置。</span></li></ul><figure><table><thead><tr><th><span>操作</span></th><th><span>解释</span></th></tr></thead><tbody><tr><td><code>tellg()</code><span>，</span><code>tellp</code></td><td><span>返回一个输入流中（</span><code>tellg</code><span>）或输出流中（</span><code>tellp</code><span>）标记的当前位置。</span></td></tr><tr><td><code>seekg(pos)</code><span>，</span><code>seekp(pos)</code></td><td><span>在一个输入流或输出流中将标记重定位到给定的绝对地址。</span><code>pos</code><span>通常是一个当前</span><code>teelg</code><span>或</span><code>tellp</code><span>返回的值。</span></td></tr><tr><td><code>seekp(off, from)</code><span>，</span><code>seekg(off, from)</code></td><td><span>在一个输入流或输出流中将标记定位到</span><code>from</code><span>之前或之后</span><code>off</code><span>个字符，</span><code>from</code><span>可以是下列值之一：</span><code>beg</code><span>，偏移量相对于流开始位置；</span><code>cur</code><span>，偏移量相对于流当前位置；</span><code>end</code><span>，偏移量相对于流结尾位置。</span></td></tr></tbody></table></figure></div>
+</body>
+</html>
