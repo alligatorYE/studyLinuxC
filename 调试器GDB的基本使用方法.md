@@ -18,8 +18,9 @@ GDB调试的三种方式：
 
 
 
-```
-main.c:#include <stdio.h>
+```c
+main.c:
+#include <stdio.h>
 #include <stdlib.h>
  
 extern int sum(int value);
