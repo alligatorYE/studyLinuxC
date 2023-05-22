@@ -21,7 +21,7 @@ linkedList * listCreate()
     return list;
 }
 
-// 释放
+// 閲婃斁
 void listRelease(linkedList *list)
 {
     if (NULL == list)
@@ -161,7 +161,7 @@ linkedList * listInsertNode(linkedList *list, listNode *old_node, void *value, b
     return list;
 }
 
-// 没设置释放函数时不做释放处理
+// 没锟斤拷锟斤拷锟酵放猴拷锟斤拷时锟斤拷锟斤拷锟酵放达拷锟斤拷
 void listDelNode(linkedList *list, listNode *node)
 {
     if (NULL == list || NULL == node)
@@ -177,7 +177,7 @@ void listDelNode(linkedList *list, listNode *node)
         cur = cur->next;
     }
 
-    // 不在该链表中
+    // 锟斤拷锟节革拷锟斤拷锟斤拷锟斤拷
     if (NULL == pre)
     {
         return;

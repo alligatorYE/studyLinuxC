@@ -24,8 +24,6 @@ KMP算法的实现步骤如下：
 
 
 
-### 我
-
 请列举一种C语言实现函数char *kmp(const char *text, const char *pattern);的方式
 
 
