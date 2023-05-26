@@ -1,5 +1,0 @@
-git config --global user.name 'alligatorYE'
-
-git config --global user.name 'alligator_@outlook.com'
-
-ssh-keygen -t rsa -C 'alligator_@outlook.com'
